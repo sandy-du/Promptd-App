@@ -35,7 +35,7 @@ protocol DatabaseProtocol: AnyObject {
     func deleteMyPrompt(myPrompt: MyPrompt)
     
     func addFavouritePrompt(imageURL: String ,text: String) -> FavouritePrompt
-    func deleteFavouritePromp(favouritePrompt: FavouritePrompt)
+    func deleteFavouritePrompt(favouritePrompt: FavouritePrompt)
     
     func createNewAccount(email: String, password: String)
     func signInWithAccount(email: String, password: String)

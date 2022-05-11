@@ -17,20 +17,22 @@ class HomeScreenViewController: UIViewController {
     var counter: Int = 0
     let REQUEST_STRING = "https://api.unsplash.com/photos/random/?client_id=Rik_ZjL2_JqDOC9osc5GIvCRg0OYOpwEUCUgHh2ZS64&orientation=landscape"
     var imagePromptURL: String?
+    var promptFavourited = false
+    weak var databaseController: DatabaseProtocol?
+    var currentFavouritePrompt: FavouritePrompt?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        databaseController = appDelegate?.databaseController
         
         promptView.layer.cornerRadius = 10
         
         promptLabel.textColor = .gray
         // Setting up favourite button
         let starImage = UIImage(systemName: "star")
-        let starImageFilled = UIImage(systemName: "star.fill")
         favouriteButton.setImage(starImage, for: .normal)
-        favouriteButton.setImage(starImageFilled, for: .highlighted)
-        
-        
 
         Task {
             await requestRandomImageURL()
@@ -45,6 +47,11 @@ class HomeScreenViewController: UIViewController {
     
 
     @IBAction func nextPrompt(_ sender: Any) {
+        // Reset favourited button
+        promptFavourited = false
+        let starImage = UIImage(systemName: "star")
+        favouriteButton.setImage(starImage, for: .normal)
+        
         Task {
             await requestRandomImageURL()
             getImage()
@@ -126,7 +133,20 @@ class HomeScreenViewController: UIViewController {
     }
 
     @IBAction func favourited(_ sender: Any) {
-        
+        let starImageFilled = UIImage(systemName: "star.fill")
+        let starImage = UIImage(systemName: "star")
+        if promptFavourited == false {
+            favouriteButton.setImage(starImageFilled, for: .normal)
+            promptFavourited = true
+            // Add prompt to database
+            currentFavouritePrompt = databaseController?.addFavouritePrompt(imageURL: imagePromptURL ?? "", text: promptLabel.text ?? "")
+            
+        } else if promptFavourited == true {
+            favouriteButton.setImage(starImage, for: .normal)
+            promptFavourited = false
+            // Remove prompt from database
+            let _ = databaseController?.deleteFavouritePrompt(favouritePrompt: currentFavouritePrompt!)
+        }
     }
     // MARK: - Navigation
 

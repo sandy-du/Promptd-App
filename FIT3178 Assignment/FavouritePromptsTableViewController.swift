@@ -1,19 +1,18 @@
 //
-//  MyPromptsTableViewController.swift
+//  FavouritePromptsTableViewController.swift
 //  FIT3178 Assignment
 //
-//  Created by Sandy Du on 4/5/2022.
+//  Created by Sandy Du on 10/5/2022.
 //
 
 import UIKit
 
-class MyPromptsTableViewController: UITableViewController, DatabaseListener {
+class FavouritePromptsTableViewController: UITableViewController, DatabaseListener {
     
-
     weak var databaseController: DatabaseProtocol?
-    var allMyPrompts: [MyPrompt] = []
-    var listenerType = ListenerType.myPrompts
-    let CELL_MYPROMPT = "myPromptCell"
+    var allFavouritePrompts: [FavouritePrompt] = []
+    var listenerType = ListenerType.favouritePrompts
+    let CELL_FAVPROMPT = "favouritePromptCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +20,7 @@ class MyPromptsTableViewController: UITableViewController, DatabaseListener {
         // Set up database controller
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         databaseController = appDelegate?.databaseController
-        
+
     }
 
     // MARK: - Table view data source
@@ -32,27 +31,19 @@ class MyPromptsTableViewController: UITableViewController, DatabaseListener {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allMyPrompts.count
+        // #warning Incomplete implementation, return the number of rows
+        return allFavouritePrompts.count
     }
 
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // Configure and return a myPrompts cell
-        let myPromptCell = tableView.dequeueReusableCell(withIdentifier: CELL_MYPROMPT, for: indexPath)
-        var content = myPromptCell.defaultContentConfiguration()
-        let myPrompt = allMyPrompts[indexPath.row]
-        content.text = myPrompt.text
-        myPromptCell.contentConfiguration = content
-        return myPromptCell
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let myPrompt = allMyPrompts[indexPath.row]
-        performSegue(withIdentifier: "showMyPromptsWritingScreen", sender: nil)
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    @IBAction func addMyPrompts(_ sender: Any) {
-        performSegue(withIdentifier: "addMyPromptSegue", sender: nil)
+        // Configure and return a favouritePrompt cell
+        let favPromptCell = tableView.dequeueReusableCell(withIdentifier: CELL_FAVPROMPT, for: indexPath)
+        var content = favPromptCell.defaultContentConfiguration()
+        let favPrompt = allFavouritePrompts[indexPath.row]
+        content.text = favPrompt.text
+        favPromptCell.contentConfiguration = content
+        return favPromptCell
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,23 +57,13 @@ class MyPromptsTableViewController: UITableViewController, DatabaseListener {
     }
     
     func onMyPromptsChange(change: DatabaseChange, myPrompts: [MyPrompt]) {
-        allMyPrompts = myPrompts
-        tableView.reloadData()
-    }
-    
-    func onFavouritePromptsChange(change: DatabaseChange, favouritePrompts: [FavouritePrompt]) {
         //
     }
     
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    func onFavouritePromptsChange(change: DatabaseChange, favouritePrompts: [FavouritePrompt]) {
+        allFavouritePrompts = favouritePrompts
+        tableView.reloadData()
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.

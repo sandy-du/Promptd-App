@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import FirebaseFirestoreSwift
+import simd
 
 class FirebaseController: NSObject, DatabaseProtocol {
     
@@ -20,6 +21,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
     var database: Firestore
     var myPromptsRef: CollectionReference?
     var favouritePromptsRef: CollectionReference?
+    var usersRefs: CollectionReference?
     var currentUser: FirebaseAuth.User?
     
     override init(){
@@ -31,6 +33,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
         favouritePromptsList = [FavouritePrompt]()
         super.init()
         
+        /*
         Task {
             do {
                 let authDataResult = try await authController.signInAnonymously()
@@ -40,7 +43,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
                 fatalError("Firebase Authentication Failed with Error\(String(describing: error))")
             }
             self.setupMyPromptsListener()
-        }
+        }*/
 
     }
     
@@ -97,14 +100,32 @@ class FirebaseController: NSObject, DatabaseProtocol {
         return favouritePrompt
     }
     
-    func deleteFavouritePromp(favouritePrompt: FavouritePrompt) {
+    func deleteFavouritePrompt(favouritePrompt: FavouritePrompt) {
         if let favouritePromptID = favouritePrompt.id {
             favouritePromptsRef?.document(favouritePromptID).delete()
         }
     }
     
     func createNewAccount(email: String, password: String) {
-        //
+        authController.createUser(withEmail: email, password: password) { authResult, error in
+            if let error = error {
+                fatalError("Firebase Authentication Failed with Error\(String(describing: error))")
+            }
+            self.currentUser = authResult?.user
+            self.usersRefs = self.database.collection("users")
+            let _ = self.usersRefs?.document((authResult?.user.uid)!).setData(["uid": authResult?.user.uid ?? ""]) {err in
+                if let err = err {
+                    print("Error writing document: \(err)")
+                } else {
+                    print("Document successfully written!")
+                }
+            }
+            
+            
+            
+        }
+        
+        self.setupMyPromptsListener()
     }
     
     func signInWithAccount(email: String, password: String) {
