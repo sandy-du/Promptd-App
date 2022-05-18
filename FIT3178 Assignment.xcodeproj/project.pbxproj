@@ -16,6 +16,9 @@
 		256CA0A82822375400B1B847 /* MyPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256CA0A72822375300B1B847 /* MyPrompt.swift */; };
 		256CA0AA28223AF300B1B847 /* FavouritePrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256CA0A928223AF300B1B847 /* FavouritePrompt.swift */; };
 		256CA0AC28223B8D00B1B847 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256CA0AB28223B8D00B1B847 /* Story.swift */; };
+		257B85642834005700C074F2 /* WelcomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257B85632834005700C074F2 /* WelcomeScreenViewController.swift */; };
+		257B85662834006900C074F2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257B85652834006900C074F2 /* LoginViewController.swift */; };
+		257B85682834007C00C074F2 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257B85672834007C00C074F2 /* SignupViewController.swift */; };
 		2581A50628224C7E00B4CDAA /* MulticastDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2581A50528224C7E00B4CDAA /* MulticastDelegate.swift */; };
 		2581A5082822675D00B4CDAA /* AddMyPromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2581A5072822675D00B4CDAA /* AddMyPromptViewController.swift */; };
 		2581A50A2822692600B4CDAA /* MyPromptsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2581A5092822692600B4CDAA /* MyPromptsTableViewController.swift */; };
@@ -39,6 +42,9 @@
 		256CA0A72822375300B1B847 /* MyPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrompt.swift; sourceTree = "<group>"; };
 		256CA0A928223AF300B1B847 /* FavouritePrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePrompt.swift; sourceTree = "<group>"; };
 		256CA0AB28223B8D00B1B847 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
+		257B85632834005700C074F2 /* WelcomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenViewController.swift; sourceTree = "<group>"; };
+		257B85652834006900C074F2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		257B85672834007C00C074F2 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		2581A50528224C7E00B4CDAA /* MulticastDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MulticastDelegate.swift; sourceTree = "<group>"; };
 		2581A5072822675D00B4CDAA /* AddMyPromptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddMyPromptViewController.swift; path = Database/AddMyPromptViewController.swift; sourceTree = "<group>"; };
 		2581A5092822692600B4CDAA /* MyPromptsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPromptsTableViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +124,9 @@
 				256CA0AB28223B8D00B1B847 /* Story.swift */,
 				2581A5092822692600B4CDAA /* MyPromptsTableViewController.swift */,
 				25FDA51B282A8C04000FD526 /* FavouritePromptsTableViewController.swift */,
+				257B85632834005700C074F2 /* WelcomeScreenViewController.swift */,
+				257B85652834006900C074F2 /* LoginViewController.swift */,
+				257B85672834007C00C074F2 /* SignupViewController.swift */,
 			);
 			path = "FIT3178 Assignment";
 			sourceTree = "<group>";
@@ -204,11 +213,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				257B85682834007C00C074F2 /* SignupViewController.swift in Sources */,
 				25FDA51C282A8C04000FD526 /* FavouritePromptsTableViewController.swift in Sources */,
 				256CA0A628221BC000B1B847 /* FirebaseController.swift in Sources */,
 				256CA0A82822375400B1B847 /* MyPrompt.swift in Sources */,
 				256CA0AA28223AF300B1B847 /* FavouritePrompt.swift in Sources */,
 				25D522AB28111B5600FBA299 /* DraftsViewController.swift in Sources */,
+				257B85642834005700C074F2 /* WelcomeScreenViewController.swift in Sources */,
 				2581A50A2822692600B4CDAA /* MyPromptsTableViewController.swift in Sources */,
 				25D522AD2813D17900FBA299 /* VisualPromptData.swift in Sources */,
 				258F08F828069CCB00B3EA22 /* AppDelegate.swift in Sources */,
@@ -216,6 +227,7 @@
 				258F08FA28069CCB00B3EA22 /* SceneDelegate.swift in Sources */,
 				256CA0AC28223B8D00B1B847 /* Story.swift in Sources */,
 				2581A50628224C7E00B4CDAA /* MulticastDelegate.swift in Sources */,
+				257B85662834006900C074F2 /* LoginViewController.swift in Sources */,
 				25D522A928111A8800FBA299 /* HomeScreenViewController.swift in Sources */,
 				25D522AF2813D1FE00FBA299 /* WrittenPromptData.swift in Sources */,
 				256CA0A428221B9C00B1B847 /* DatabaseProtocol.swift in Sources */,

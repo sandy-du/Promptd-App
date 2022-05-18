@@ -107,12 +107,12 @@ class FirebaseController: NSObject, DatabaseProtocol {
     }
     
     func createNewAccount(email: String, password: String) {
+        usersRefs = database.collection("users")
         authController.createUser(withEmail: email, password: password) { authResult, error in
             if let error = error {
                 fatalError("Firebase Authentication Failed with Error\(String(describing: error))")
             }
             self.currentUser = authResult?.user
-            self.usersRefs = self.database.collection("users")
             let _ = self.usersRefs?.document((authResult?.user.uid)!).setData(["uid": authResult?.user.uid ?? ""]) {err in
                 if let err = err {
                     print("Error writing document: \(err)")
