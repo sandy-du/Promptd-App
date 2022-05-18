@@ -113,7 +113,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
                 fatalError("Firebase Authentication Failed with Error\(String(describing: error))")
             }
             self.currentUser = authResult?.user
-            let _ = self.usersRefs?.document((authResult?.user.uid)!).setData(["uid": authResult?.user.uid ?? ""]) {err in
+            let _ = self.usersRefs?.document((self.currentUser?.uid)!).setData(["uid": authResult?.user.uid ?? ""]) {err in
                 if let err = err {
                     print("Error writing document: \(err)")
                 } else {
@@ -121,15 +121,22 @@ class FirebaseController: NSObject, DatabaseProtocol {
                 }
             }
             
-            
-            
         }
         
         self.setupMyPromptsListener()
     }
     
     func signInWithAccount(email: String, password: String) {
-        //
+        usersRefs = database.collection("users")
+        authController.signIn(withEmail: email, password: password) { [weak self] authResult, error in
+            if let error = error {
+                fatalError("Firebase Authentication Failed with Error\(String(describing: error))")
+            }
+            self!.currentUser = authResult?.user
+            print("Current user signed in: \(self!.currentUser?.uid ?? "")")
+        }
+        self.setupMyPromptsListener()
+        
     }
     
     func setupMyPromptsListener() {

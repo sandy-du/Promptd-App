@@ -19,6 +19,7 @@
 		257B85642834005700C074F2 /* WelcomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257B85632834005700C074F2 /* WelcomeScreenViewController.swift */; };
 		257B85662834006900C074F2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257B85652834006900C074F2 /* LoginViewController.swift */; };
 		257B85682834007C00C074F2 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257B85672834007C00C074F2 /* SignupViewController.swift */; };
+		257B856A283492CB00C074F2 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257B8569283492CA00C074F2 /* HomeTabBarController.swift */; };
 		2581A50628224C7E00B4CDAA /* MulticastDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2581A50528224C7E00B4CDAA /* MulticastDelegate.swift */; };
 		2581A5082822675D00B4CDAA /* AddMyPromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2581A5072822675D00B4CDAA /* AddMyPromptViewController.swift */; };
 		2581A50A2822692600B4CDAA /* MyPromptsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2581A5092822692600B4CDAA /* MyPromptsTableViewController.swift */; };
@@ -45,6 +46,7 @@
 		257B85632834005700C074F2 /* WelcomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenViewController.swift; sourceTree = "<group>"; };
 		257B85652834006900C074F2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		257B85672834007C00C074F2 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		257B8569283492CA00C074F2 /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		2581A50528224C7E00B4CDAA /* MulticastDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MulticastDelegate.swift; sourceTree = "<group>"; };
 		2581A5072822675D00B4CDAA /* AddMyPromptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddMyPromptViewController.swift; path = Database/AddMyPromptViewController.swift; sourceTree = "<group>"; };
 		2581A5092822692600B4CDAA /* MyPromptsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPromptsTableViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				257B85632834005700C074F2 /* WelcomeScreenViewController.swift */,
 				257B85652834006900C074F2 /* LoginViewController.swift */,
 				257B85672834007C00C074F2 /* SignupViewController.swift */,
+				257B8569283492CA00C074F2 /* HomeTabBarController.swift */,
 			);
 			path = "FIT3178 Assignment";
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 			files = (
 				257B85682834007C00C074F2 /* SignupViewController.swift in Sources */,
 				25FDA51C282A8C04000FD526 /* FavouritePromptsTableViewController.swift in Sources */,
+				257B856A283492CB00C074F2 /* HomeTabBarController.swift in Sources */,
 				256CA0A628221BC000B1B847 /* FirebaseController.swift in Sources */,
 				256CA0A82822375400B1B847 /* MyPrompt.swift in Sources */,
 				256CA0AA28223AF300B1B847 /* FavouritePrompt.swift in Sources */,

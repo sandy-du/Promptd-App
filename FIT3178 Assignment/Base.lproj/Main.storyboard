@@ -123,15 +123,19 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="JIv-KU-ntd"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="zms-fz-cG2" id="txQ-k0-IyU"/>
+                        <outlet property="passwordTextField" destination="Xhl-tG-HVV" id="Xt6-yP-3yM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uHx-jE-LJz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2449" y="-433"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Home Tab Bar Controller-->
         <scene sceneID="wK9-Fc-qRU">
             <objects>
-                <tabBarController id="l0y-sF-p0F" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="homeScreen" id="l0y-sF-p0F" customClass="HomeTabBarController" customModule="FIT3178_Assignment" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="u5S-DZ-I3D">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -206,6 +210,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="jZF-gg-IbQ"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="xoN-f1-Jh5" id="NhM-Oq-t7i"/>
+                        <outlet property="passwordTextField" destination="iRy-ZG-z7m" id="ybY-dJ-2tb"/>
+                        <outlet property="usernameTextField" destination="pFs-23-y1C" id="cLi-b9-EdW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uBM-JK-Uu4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -418,7 +427,7 @@
         <!--Home Screen View Controller-->
         <scene sceneID="BPj-qX-AFS">
             <objects>
-                <viewController storyboardIdentifier="homeScreen" id="vcH-g3-CxS" customClass="HomeScreenViewController" customModule="FIT3178_Assignment" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vcH-g3-CxS" customClass="HomeScreenViewController" customModule="FIT3178_Assignment" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="w2X-Ky-pG9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
