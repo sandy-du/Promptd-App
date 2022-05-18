@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 enum DatabaseChange {
     case add
@@ -39,4 +40,7 @@ protocol DatabaseProtocol: AnyObject {
     
     func createNewAccount(email: String, password: String)
     func signInWithAccount(email: String, password: String)
+    
+    func addStoryToUser(prompt: FavouritePrompt, text: String) -> Story
+    func deleteStoryFromUser(story: Story)
 }

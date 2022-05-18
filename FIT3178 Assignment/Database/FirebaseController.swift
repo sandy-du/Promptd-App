@@ -106,6 +106,32 @@ class FirebaseController: NSObject, DatabaseProtocol {
         }
     }
     
+    func addStoryToUser(prompt: FavouritePrompt, text: String) -> Story {
+        let story = Story()
+        story.text = text
+        story.prompt = prompt
+        usersRefs = database.collection("users")
+        let storiesRefs = usersRefs?.document(currentUser?.uid ?? "").collection("stories")
+        
+        do {
+            if let storyRef = try storiesRefs?.addDocument(from: story){
+                story.id = storyRef.documentID
+            }
+        } catch {
+            print("Failed to serialize stories")
+        }
+        return story
+    }
+    
+    func deleteStoryFromUser(story: Story) {
+        usersRefs = database.collection("users")
+        let storiesRefs = usersRefs?.document(currentUser?.uid ?? "").collection("stories")
+        
+        if let storyID = story.id {
+            storiesRefs?.document(storyID).delete()
+        }
+    }
+    
     func createNewAccount(email: String, password: String) {
         usersRefs = database.collection("users")
         authController.createUser(withEmail: email, password: password) { authResult, error in

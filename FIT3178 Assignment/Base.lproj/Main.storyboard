@@ -564,7 +564,7 @@
         <!--Write-->
         <scene sceneID="7OS-gL-TNu">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="tQ5-s0-X7j" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="tQ5-s0-X7j" customClass="WritingScreenViewController" customModule="FIT3178_Assignment" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a0g-mD-pCC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -588,8 +588,15 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Write" id="oPd-Py-2Dt">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="EBc-k7-jh2"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="EBc-k7-jh2">
+                            <connections>
+                                <action selector="saveStoryToUser:" destination="tQ5-s0-X7j" id="WEN-Yn-GE6"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="storyTextField" destination="zBM-gb-TtG" id="zUm-d7-5aY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rHe-4P-f0y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
