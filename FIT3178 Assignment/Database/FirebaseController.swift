@@ -146,10 +146,8 @@ class FirebaseController: NSObject, DatabaseProtocol {
                     print("Document successfully written!")
                 }
             }
-            
+            self.setupMyPromptsListener()
         }
-        
-        self.setupMyPromptsListener()
     }
     
     func signInWithAccount(email: String, password: String) {
@@ -160,13 +158,12 @@ class FirebaseController: NSObject, DatabaseProtocol {
             }
             self!.currentUser = authResult?.user
             print("Current user signed in: \(self!.currentUser?.uid ?? "")")
+            self?.setupMyPromptsListener()
         }
-        self.setupMyPromptsListener()
-        
     }
     
     func setupMyPromptsListener() {
-        myPromptsRef = database.collection("myPrompts")
+        myPromptsRef = usersRefs?.document(currentUser?.uid ?? "").collection("myPrompts")
         myPromptsRef?.addSnapshotListener() { (querySnapshot, error) in
             guard let querySnapshot = querySnapshot else {
                 print("Failed to fetch documents with error: \(String(describing: error))")
@@ -180,7 +177,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
     }
     
     func setupFavouritePromptsListener() {
-        favouritePromptsRef = database.collection("favouritePrompts")
+        favouritePromptsRef = usersRefs?.document(currentUser?.uid ?? "").collection("favouritePrompts")
         favouritePromptsRef?.addSnapshotListener { (querySnapshot, error) in
             guard let querySnapshot = querySnapshot else {
                 print("Error fetching teams: \(error!)")
