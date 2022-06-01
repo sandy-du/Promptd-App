@@ -53,6 +53,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This may occur due to temporary interruptions (ex. an incoming phone call).
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         appDelegate?.databaseController?.cleanup()
+        
+        appDelegate?.coreDataController?.cleanup()
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {

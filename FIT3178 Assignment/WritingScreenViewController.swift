@@ -9,19 +9,24 @@ import UIKit
 
 class WritingScreenViewController: UIViewController {
     
-    weak var databaseController: DatabaseProtocol?
+    //weak var databaseController: DatabaseProtocol?
     @IBOutlet weak var storyTextField: UITextView!
     var currentPrompt: FavouritePrompt?
+    weak var coreDataController: CoreDataProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        //databaseController = appDelegate?.databaseController
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        databaseController = appDelegate?.databaseController
+        coreDataController = appDelegate?.coreDataController
+        
     }
     
     @IBAction func saveStoryToUser(_ sender: Any) {
-        let _ = databaseController?.addStoryToUser(prompt: currentPrompt!, text: storyTextField.text)
+        //let _ = databaseController?.addStoryToUser(prompt: currentPrompt!, text: storyTextField.text)
+        let _ = coreDataController?.addDraft(prompt: currentPrompt!, text: storyTextField.text)
         navigationController?.popViewController(animated: true)
         
     }

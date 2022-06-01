@@ -30,9 +30,14 @@
 		258F08FF28069CCB00B3EA22 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 258F08FD28069CCB00B3EA22 /* Main.storyboard */; };
 		258F090128069CCD00B3EA22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 258F090028069CCD00B3EA22 /* Assets.xcassets */; };
 		258F090428069CCD00B3EA22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 258F090228069CCD00B3EA22 /* LaunchScreen.storyboard */; };
+		25B43B7F283DD54A00AE781A /* PromptdCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 25B43B7D283DD54A00AE781A /* PromptdCoreDataModel.xcdatamodeld */; };
+		25B43B89283DE33B00AE781A /* CoreDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B43B88283DE33B00AE781A /* CoreDataProtocol.swift */; };
+		25B43B8B283DE35E00AE781A /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B43B8A283DE35E00AE781A /* CoreDataController.swift */; };
+		25B43B8E283DE68800AE781A /* StoryDraft+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B43B8C283DE68800AE781A /* StoryDraft+CoreDataClass.swift */; };
+		25B43B8F283DE68800AE781A /* StoryDraft+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B43B8D283DE68800AE781A /* StoryDraft+CoreDataProperties.swift */; };
+		25B43B91283DEB1600AE781A /* DraftsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B43B90283DEB1600AE781A /* DraftsTableViewController.swift */; };
 		25D1B6A32816DBB900366282 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 25D1B6A22816DBB900366282 /* SwiftSoup */; };
 		25D522A928111A8800FBA299 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D522A828111A8800FBA299 /* HomeScreenViewController.swift */; };
-		25D522AB28111B5600FBA299 /* DraftsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D522AA28111B5600FBA299 /* DraftsViewController.swift */; };
 		25D522AD2813D17900FBA299 /* VisualPromptData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D522AC2813D17900FBA299 /* VisualPromptData.swift */; };
 		25D522AF2813D1FE00FBA299 /* WrittenPromptData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D522AE2813D1FE00FBA299 /* WrittenPromptData.swift */; };
 		25FDA51C282A8C04000FD526 /* FavouritePromptsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FDA51B282A8C04000FD526 /* FavouritePromptsTableViewController.swift */; };
@@ -61,8 +66,13 @@
 		258F090028069CCD00B3EA22 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		258F090328069CCD00B3EA22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		258F090528069CCD00B3EA22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		25B43B7E283DD54A00AE781A /* PromptdCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PromptdCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		25B43B88283DE33B00AE781A /* CoreDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataProtocol.swift; sourceTree = "<group>"; };
+		25B43B8A283DE35E00AE781A /* CoreDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
+		25B43B8C283DE68800AE781A /* StoryDraft+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoryDraft+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		25B43B8D283DE68800AE781A /* StoryDraft+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoryDraft+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		25B43B90283DEB1600AE781A /* DraftsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftsTableViewController.swift; sourceTree = "<group>"; };
 		25D522A828111A8800FBA299 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
-		25D522AA28111B5600FBA299 /* DraftsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftsViewController.swift; sourceTree = "<group>"; };
 		25D522AC2813D17900FBA299 /* VisualPromptData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualPromptData.swift; sourceTree = "<group>"; };
 		25D522AE2813D1FE00FBA299 /* WrittenPromptData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrittenPromptData.swift; sourceTree = "<group>"; };
 		25FDA51B282A8C04000FD526 /* FavouritePromptsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePromptsTableViewController.swift; sourceTree = "<group>"; };
@@ -112,23 +122,14 @@
 		258F08F628069CCB00B3EA22 /* FIT3178 Assignment */ = {
 			isa = PBXGroup;
 			children = (
+				25C204EF28473E6200AD29BC /* Model */,
+				25B43B7C283DD51800AE781A /* Data Model */,
 				256CA0A228221B6400B1B847 /* Database */,
 				258F08F728069CCB00B3EA22 /* AppDelegate.swift */,
 				258F08F928069CCB00B3EA22 /* SceneDelegate.swift */,
 				25D522A828111A8800FBA299 /* HomeScreenViewController.swift */,
-				25D522AA28111B5600FBA299 /* DraftsViewController.swift */,
-				258F08FD28069CCB00B3EA22 /* Main.storyboard */,
-				258F090028069CCD00B3EA22 /* Assets.xcassets */,
-				258F090228069CCD00B3EA22 /* LaunchScreen.storyboard */,
-				258F090528069CCD00B3EA22 /* Info.plist */,
-				25D522AC2813D17900FBA299 /* VisualPromptData.swift */,
-				25D522AE2813D1FE00FBA299 /* WrittenPromptData.swift */,
+				25B43B90283DEB1600AE781A /* DraftsTableViewController.swift */,
 				2581A5072822675D00B4CDAA /* AddMyPromptViewController.swift */,
-				251D15D028190DAF00F41785 /* GoogleService-Info.plist */,
-				256CA0A72822375300B1B847 /* MyPrompt.swift */,
-				256CA0A928223AF300B1B847 /* FavouritePrompt.swift */,
-				256CA0AB28223B8D00B1B847 /* Story.swift */,
-				257B856D2834AC0000C074F2 /* User.swift */,
 				2581A5092822692600B4CDAA /* MyPromptsTableViewController.swift */,
 				25FDA51B282A8C04000FD526 /* FavouritePromptsTableViewController.swift */,
 				257B85632834005700C074F2 /* WelcomeScreenViewController.swift */,
@@ -136,8 +137,38 @@
 				257B85672834007C00C074F2 /* SignupViewController.swift */,
 				257B8569283492CA00C074F2 /* HomeTabBarController.swift */,
 				257B856B2834ABBA00C074F2 /* WritingScreenViewController.swift */,
+				258F08FD28069CCB00B3EA22 /* Main.storyboard */,
+				258F090028069CCD00B3EA22 /* Assets.xcassets */,
+				258F090228069CCD00B3EA22 /* LaunchScreen.storyboard */,
+				258F090528069CCD00B3EA22 /* Info.plist */,
+				251D15D028190DAF00F41785 /* GoogleService-Info.plist */,
 			);
 			path = "FIT3178 Assignment";
+			sourceTree = "<group>";
+		};
+		25B43B7C283DD51800AE781A /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				25B43B8C283DE68800AE781A /* StoryDraft+CoreDataClass.swift */,
+				25B43B8D283DE68800AE781A /* StoryDraft+CoreDataProperties.swift */,
+				25B43B7D283DD54A00AE781A /* PromptdCoreDataModel.xcdatamodeld */,
+				25B43B88283DE33B00AE781A /* CoreDataProtocol.swift */,
+				25B43B8A283DE35E00AE781A /* CoreDataController.swift */,
+			);
+			path = "Data Model";
+			sourceTree = "<group>";
+		};
+		25C204EF28473E6200AD29BC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				256CA0A72822375300B1B847 /* MyPrompt.swift */,
+				25D522AC2813D17900FBA299 /* VisualPromptData.swift */,
+				25D522AE2813D1FE00FBA299 /* WrittenPromptData.swift */,
+				256CA0A928223AF300B1B847 /* FavouritePrompt.swift */,
+				256CA0AB28223B8D00B1B847 /* Story.swift */,
+				257B856D2834AC0000C074F2 /* User.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,13 +253,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25B43B89283DE33B00AE781A /* CoreDataProtocol.swift in Sources */,
 				257B85682834007C00C074F2 /* SignupViewController.swift in Sources */,
 				25FDA51C282A8C04000FD526 /* FavouritePromptsTableViewController.swift in Sources */,
 				257B856A283492CB00C074F2 /* HomeTabBarController.swift in Sources */,
+				25B43B7F283DD54A00AE781A /* PromptdCoreDataModel.xcdatamodeld in Sources */,
+				25B43B91283DEB1600AE781A /* DraftsTableViewController.swift in Sources */,
 				256CA0A628221BC000B1B847 /* FirebaseController.swift in Sources */,
 				256CA0A82822375400B1B847 /* MyPrompt.swift in Sources */,
+				25B43B8B283DE35E00AE781A /* CoreDataController.swift in Sources */,
 				256CA0AA28223AF300B1B847 /* FavouritePrompt.swift in Sources */,
-				25D522AB28111B5600FBA299 /* DraftsViewController.swift in Sources */,
 				257B85642834005700C074F2 /* WelcomeScreenViewController.swift in Sources */,
 				2581A50A2822692600B4CDAA /* MyPromptsTableViewController.swift in Sources */,
 				257B856C2834ABBB00C074F2 /* WritingScreenViewController.swift in Sources */,
@@ -238,7 +272,9 @@
 				258F08FA28069CCB00B3EA22 /* SceneDelegate.swift in Sources */,
 				256CA0AC28223B8D00B1B847 /* Story.swift in Sources */,
 				2581A50628224C7E00B4CDAA /* MulticastDelegate.swift in Sources */,
+				25B43B8E283DE68800AE781A /* StoryDraft+CoreDataClass.swift in Sources */,
 				257B85662834006900C074F2 /* LoginViewController.swift in Sources */,
+				25B43B8F283DE68800AE781A /* StoryDraft+CoreDataProperties.swift in Sources */,
 				25D522A928111A8800FBA299 /* HomeScreenViewController.swift in Sources */,
 				25D522AF2813D1FE00FBA299 /* WrittenPromptData.swift in Sources */,
 				256CA0A428221B9C00B1B847 /* DatabaseProtocol.swift in Sources */,
@@ -502,6 +538,19 @@
 			productName = SwiftSoup;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		25B43B7D283DD54A00AE781A /* PromptdCoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				25B43B7E283DD54A00AE781A /* PromptdCoreDataModel.xcdatamodel */,
+			);
+			currentVersion = 25B43B7E283DD54A00AE781A /* PromptdCoreDataModel.xcdatamodel */;
+			path = PromptdCoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 258F08EC28069CCB00B3EA22 /* Project object */;
 }

@@ -239,13 +239,13 @@
         <!--Drafts-->
         <scene sceneID="CWZ-Ga-aUV">
             <objects>
-                <tableViewController id="wIM-3q-vQI" sceneMemberID="viewController">
+                <tableViewController id="wIM-3q-vQI" customClass="DraftsTableViewController" customModule="FIT3178_Assignment" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="RZ9-cD-ypy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="draftID" textLabel="GGG-pU-RPq" detailTextLabel="T5J-pI-kAm" style="IBUITableViewCellStyleSubtitle" id="gCK-NR-zcb">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="draftCell" textLabel="GGG-pU-RPq" detailTextLabel="T5J-pI-kAm" style="IBUITableViewCellStyleSubtitle" id="gCK-NR-zcb">
                                 <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gCK-NR-zcb" id="xCn-8V-vW0">
