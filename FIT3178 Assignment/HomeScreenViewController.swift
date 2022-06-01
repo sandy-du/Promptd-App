@@ -20,6 +20,7 @@ class HomeScreenViewController: UIViewController {
     var promptFavourited = false
     weak var databaseController: DatabaseProtocol?
     var currentFavouritePrompt: FavouritePrompt?
+    var currentPrompt: FavouritePrompt?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,13 @@ class HomeScreenViewController: UIViewController {
             getImage()
         }
         getRandomPrompt()
+        
+        // Set the new prompt as the current prompt
+        currentPrompt = FavouritePrompt()
+        //currentPrompt.imageURL = imagePromptURL
+        //currentPrompt.text = promptLabel.text ?? ""
+        //currentPrompt.id = ""
+        
     }
     
     @IBAction func writeStory(_ sender: Any) {
@@ -57,6 +65,11 @@ class HomeScreenViewController: UIViewController {
             getImage()
         }
         getRandomPrompt()
+        
+        // Set the new prompt as the current prompt
+        //currentPrompt.imageURL = imagePromptURL
+        //currentPrompt.text = promptLabel.text
+        //currentPrompt.id = ""
     }
     
     func requestRandomImageURL() async {
@@ -128,8 +141,6 @@ class HomeScreenViewController: UIViewController {
                 promptLabel.text = sentence
             }
         }
-        
-        
     }
 
     @IBAction func favourited(_ sender: Any) {
@@ -156,7 +167,9 @@ class HomeScreenViewController: UIViewController {
         // Pass the selected object to the new view controller.
         if segue.identifier == "writingScreenSegue" {
             let destination = segue.destination as! WritingScreenViewController
-            destination.currentPrompt = currentFavouritePrompt
+            currentPrompt?.text = promptLabel.text
+            currentPrompt?.imageURL = imagePromptURL
+            destination.currentPrompt = currentPrompt
         }
     }
     
