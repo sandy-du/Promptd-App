@@ -433,14 +433,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0FK-WR-ubH">
-                                <rect key="frame" x="20" y="128" width="374" height="450"/>
+                                <rect key="frame" x="20" y="128" width="374" height="480"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tg2-Pg-MXo">
-                                        <rect key="frame" x="20" y="107" width="334" height="20.5"/>
+                                        <rect key="frame" x="20" y="107" width="334" height="40.5"/>
                                         <attributedString key="attributedText">
-                                            <fragment content="exuberant, mask, tyre">
+                                            <fragment content="exuberant, mask, tyre ">
                                                 <attributes>
                                                     <font key="NSFont" metaFont="system" size="17"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="exuberant, mask, tyre exuberant, mask, tyre">
+                                                <attributes>
+                                                    <font key="NSFont" size="17" name="HelveticaNeue"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
@@ -448,13 +454,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8Cl-Rm-XB9">
-                                        <rect key="frame" x="20" y="137.5" width="334" height="230"/>
+                                        <rect key="frame" x="20" y="157.5" width="334" height="230"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="230" id="DiS-a9-MIR"/>
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tqf-Oo-0xj">
-                                        <rect key="frame" x="20" y="387.5" width="157" height="31"/>
+                                        <rect key="frame" x="20" y="424" width="157" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Next Prompt"/>
                                         <connections>
@@ -462,7 +468,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fcg-Et-8Qd">
-                                        <rect key="frame" x="197" y="387.5" width="157" height="31"/>
+                                        <rect key="frame" x="197" y="424" width="157" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Write"/>
                                         <connections>
@@ -493,14 +499,14 @@
                                     <constraint firstItem="Fcg-Et-8Qd" firstAttribute="width" secondItem="Tqf-Oo-0xj" secondAttribute="width" id="KPw-fp-QcY"/>
                                     <constraint firstItem="Fcg-Et-8Qd" firstAttribute="leading" secondItem="Tqf-Oo-0xj" secondAttribute="trailing" constant="20" id="U6D-sY-2xA"/>
                                     <constraint firstAttribute="trailing" secondItem="MhC-j4-zGs" secondAttribute="trailing" constant="20" id="WRo-do-8qY"/>
+                                    <constraint firstAttribute="bottom" secondItem="Tqf-Oo-0xj" secondAttribute="bottom" constant="25" id="cVd-yp-5J2"/>
                                     <constraint firstItem="Tqf-Oo-0xj" firstAttribute="leading" secondItem="0FK-WR-ubH" secondAttribute="leading" constant="20" id="ctS-ts-uSb"/>
                                     <constraint firstItem="MhC-j4-zGs" firstAttribute="leading" secondItem="0FK-WR-ubH" secondAttribute="leading" constant="20" id="eEj-pf-zIP"/>
                                     <constraint firstItem="Fcg-Et-8Qd" firstAttribute="centerY" secondItem="Tqf-Oo-0xj" secondAttribute="centerY" id="eOk-eP-f9x"/>
                                     <constraint firstItem="nuH-Ev-MpR" firstAttribute="top" secondItem="0FK-WR-ubH" secondAttribute="top" constant="10" id="fq0-vE-tB7"/>
                                     <constraint firstAttribute="trailing" secondItem="nuH-Ev-MpR" secondAttribute="trailing" constant="317" id="kbK-VS-7m0"/>
                                     <constraint firstItem="MhC-j4-zGs" firstAttribute="top" secondItem="0FK-WR-ubH" secondAttribute="top" constant="50" id="lev-D1-ovN"/>
-                                    <constraint firstAttribute="height" constant="450" id="mx4-Mb-xZP"/>
-                                    <constraint firstItem="Tqf-Oo-0xj" firstAttribute="top" secondItem="8Cl-Rm-XB9" secondAttribute="bottom" constant="20" id="nLb-ws-1PR"/>
+                                    <constraint firstAttribute="height" constant="480" id="mx4-Mb-xZP"/>
                                     <constraint firstItem="nuH-Ev-MpR" firstAttribute="leading" secondItem="0FK-WR-ubH" secondAttribute="leading" constant="5" id="rii-ik-zdG"/>
                                     <constraint firstAttribute="trailing" secondItem="tg2-Pg-MXo" secondAttribute="trailing" constant="20" id="wZ8-eh-q5n"/>
                                     <constraint firstItem="8Cl-Rm-XB9" firstAttribute="top" secondItem="tg2-Pg-MXo" secondAttribute="bottom" constant="10" id="y6d-jB-UQw"/>
@@ -508,7 +514,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QmS-y2-ghU">
-                                <rect key="frame" x="20" y="608" width="374" height="35"/>
+                                <rect key="frame" x="20" y="638" width="374" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" cornerStyle="capsule">
                                     <attributedString key="attributedTitle">
@@ -524,7 +530,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W4A-72-Sn8">
-                                <rect key="frame" x="20" y="663" width="374" height="35"/>
+                                <rect key="frame" x="20" y="693" width="374" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Favourited Prompts" cornerStyle="capsule">
                                     <fontDescription key="titleFontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
@@ -570,21 +576,61 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zBM-gb-TtG">
-                                <rect key="frame" x="20" y="88" width="374" height="725"/>
+                                <rect key="frame" x="20" y="328" width="374" height="485"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YFN-xs-gEe">
+                                <rect key="frame" x="20" y="108" width="374" height="200"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Write a short story based on the following: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNp-EF-5BC">
+                                        <rect key="frame" x="20" y="15" width="334" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="exuberant, mask, tyre exuberant, mask, tyre exuberant, mask, tyre" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kTc-id-kya">
+                                        <rect key="frame" x="20" y="41" width="334" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" systemColor="systemGrayColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0bL-of-xQi">
+                                        <rect key="frame" x="0.0" y="85" width="374" height="115"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="115" id="hi6-Le-zTf"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGray3Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="aNp-EF-5BC" secondAttribute="trailing" constant="20" id="2A5-uk-DIq"/>
+                                    <constraint firstAttribute="trailing" secondItem="kTc-id-kya" secondAttribute="trailing" constant="20" id="3RA-iU-wVh"/>
+                                    <constraint firstAttribute="trailing" secondItem="0bL-of-xQi" secondAttribute="trailing" id="GhJ-fg-BIe"/>
+                                    <constraint firstAttribute="height" constant="200" id="Gjl-nh-Mr7"/>
+                                    <constraint firstItem="aNp-EF-5BC" firstAttribute="top" secondItem="YFN-xs-gEe" secondAttribute="top" constant="15" id="LYU-7M-dJS"/>
+                                    <constraint firstItem="0bL-of-xQi" firstAttribute="top" secondItem="kTc-id-kya" secondAttribute="bottom" constant="8" id="NaN-uH-LBx"/>
+                                    <constraint firstItem="kTc-id-kya" firstAttribute="leading" secondItem="YFN-xs-gEe" secondAttribute="leading" constant="20" id="cce-kK-pcA"/>
+                                    <constraint firstAttribute="bottom" secondItem="0bL-of-xQi" secondAttribute="bottom" id="dcZ-BX-bex"/>
+                                    <constraint firstItem="kTc-id-kya" firstAttribute="top" secondItem="aNp-EF-5BC" secondAttribute="bottom" constant="8" id="eqo-1W-1Jh"/>
+                                    <constraint firstItem="0bL-of-xQi" firstAttribute="leading" secondItem="YFN-xs-gEe" secondAttribute="leading" id="qky-2m-d19"/>
+                                    <constraint firstItem="aNp-EF-5BC" firstAttribute="leading" secondItem="YFN-xs-gEe" secondAttribute="leading" constant="20" id="yER-ai-2i0"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kaH-hS-Nb7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="zBM-gb-TtG" firstAttribute="leading" secondItem="kaH-hS-Nb7" secondAttribute="leading" constant="20" id="6bL-n7-bsH"/>
-                            <constraint firstItem="zBM-gb-TtG" firstAttribute="top" secondItem="kaH-hS-Nb7" secondAttribute="top" id="T2V-Rn-UaJ"/>
+                            <constraint firstItem="zBM-gb-TtG" firstAttribute="top" secondItem="YFN-xs-gEe" secondAttribute="bottom" constant="20" id="9xA-IA-BRY"/>
+                            <constraint firstItem="kaH-hS-Nb7" firstAttribute="trailing" secondItem="YFN-xs-gEe" secondAttribute="trailing" constant="20" id="A1s-sk-d15"/>
+                            <constraint firstItem="YFN-xs-gEe" firstAttribute="top" secondItem="kaH-hS-Nb7" secondAttribute="top" constant="20" id="RYV-xT-ppp"/>
                             <constraint firstItem="kaH-hS-Nb7" firstAttribute="trailing" secondItem="zBM-gb-TtG" secondAttribute="trailing" constant="20" id="UQc-lG-vdw"/>
                             <constraint firstItem="kaH-hS-Nb7" firstAttribute="bottom" secondItem="zBM-gb-TtG" secondAttribute="bottom" id="YUF-T9-NJK"/>
+                            <constraint firstItem="YFN-xs-gEe" firstAttribute="leading" secondItem="kaH-hS-Nb7" secondAttribute="leading" constant="20" id="kfA-97-PPf"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Write" id="oPd-Py-2Dt">
@@ -595,6 +641,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="promptImageView" destination="0bL-of-xQi" id="bVP-Cw-YiP"/>
+                        <outlet property="promptTextLabel" destination="kTc-id-kya" id="Sff-hf-dov"/>
+                        <outlet property="promptWriteView" destination="YFN-xs-gEe" id="CUd-GS-WnX"/>
                         <outlet property="storyTextField" destination="zBM-gb-TtG" id="zUm-d7-5aY"/>
                     </connections>
                 </viewController>
@@ -633,8 +682,14 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <systemColor name="systemGray3Color">
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

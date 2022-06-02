@@ -21,6 +21,7 @@ class HomeScreenViewController: UIViewController {
     weak var databaseController: DatabaseProtocol?
     var currentFavouritePrompt: FavouritePrompt?
     var currentPrompt: FavouritePrompt?
+    var currentImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,9 +44,6 @@ class HomeScreenViewController: UIViewController {
         
         // Set the new prompt as the current prompt
         currentPrompt = FavouritePrompt()
-        //currentPrompt.imageURL = imagePromptURL
-        //currentPrompt.text = promptLabel.text ?? ""
-        //currentPrompt.id = ""
         
     }
     
@@ -66,10 +64,6 @@ class HomeScreenViewController: UIViewController {
         }
         getRandomPrompt()
         
-        // Set the new prompt as the current prompt
-        //currentPrompt.imageURL = imagePromptURL
-        //currentPrompt.text = promptLabel.text
-        //currentPrompt.id = ""
     }
     
     func requestRandomImageURL() async {
@@ -108,6 +102,7 @@ class HomeScreenViewController: UIViewController {
                         
                         if let image = UIImage(data: data) {
                             imageView.image = image
+                            currentImage = image
                         } else {
                             print("Not a valid image!")
                         }
@@ -170,6 +165,7 @@ class HomeScreenViewController: UIViewController {
             currentPrompt?.text = promptLabel.text
             currentPrompt?.imageURL = imagePromptURL
             destination.currentPrompt = currentPrompt
+            destination.currentImage = currentImage
         }
     }
     

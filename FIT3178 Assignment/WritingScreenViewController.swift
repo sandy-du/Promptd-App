@@ -12,7 +12,11 @@ class WritingScreenViewController: UIViewController {
     //weak var databaseController: DatabaseProtocol?
     @IBOutlet weak var storyTextField: UITextView!
     var currentPrompt: FavouritePrompt?
+    var currentImage: UIImage?
     weak var coreDataController: CoreDataProtocol?
+    @IBOutlet weak var promptWriteView: UIView!
+    @IBOutlet weak var promptTextLabel: UILabel!
+    @IBOutlet weak var promptImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +26,12 @@ class WritingScreenViewController: UIViewController {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         coreDataController = appDelegate?.coreDataController
         
+        promptWriteView.layer.cornerRadius = 10
+        promptWriteView.clipsToBounds = true
+        promptTextLabel.text = currentPrompt?.text
+        promptImageView.image = currentImage
+        promptImageView.contentMode = .scaleAspectFill
+        promptImageView.clipsToBounds = true
     }
     
     @IBAction func saveStoryToUser(_ sender: Any) {
