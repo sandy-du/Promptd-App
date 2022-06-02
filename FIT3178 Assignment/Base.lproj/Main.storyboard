@@ -143,7 +143,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="amt-7C-Yx2" kind="relationship" relationship="viewControllers" id="mhL-Cf-q3J"/>
-                        <segue destination="wIM-3q-vQI" kind="relationship" relationship="viewControllers" id="IbF-e5-0CH"/>
+                        <segue destination="tg9-bZ-v4p" kind="relationship" relationship="viewControllers" id="IbF-e5-0CH"/>
                         <segue destination="651-h5-CVc" kind="relationship" relationship="viewControllers" id="tSH-o0-41Y"/>
                     </connections>
                 </tabBarController>
@@ -236,7 +236,7 @@
             </objects>
             <point key="canvasLocation" x="-2233.3333333333335" y="284.59821428571428"/>
         </scene>
-        <!--Drafts-->
+        <!--Drafts Table View Controller-->
         <scene sceneID="CWZ-Ga-aUV">
             <objects>
                 <tableViewController id="wIM-3q-vQI" customClass="DraftsTableViewController" customModule="FIT3178_Assignment" customModuleProvider="target" sceneMemberID="viewController">
@@ -275,11 +275,14 @@
                             <outlet property="delegate" destination="wIM-3q-vQI" id="you-gr-cOl"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Drafts" image="square.and.pencil" catalog="system" id="5lP-H5-BtJ"/>
+                    <navigationItem key="navigationItem" id="OmM-tC-UtW"/>
+                    <connections>
+                        <segue destination="tQ5-s0-X7j" kind="show" identifier="showDraftWritingScreenSegue" id="TMQ-LZ-ZdU"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AT1-0w-YCF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1284" y="285"/>
+            <point key="canvasLocation" x="-373.91304347826087" y="314.73214285714283"/>
         </scene>
         <!--My Prompts Table View Controller-->
         <scene sceneID="Nt3-q0-sNV">
@@ -318,7 +321,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xDV-1Z-L2f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-271" y="398"/>
+            <point key="canvasLocation" x="639.13043478260875" y="397.76785714285711"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="ld9-I2-T5O">
@@ -352,7 +355,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jhv-F5-jYN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="642" y="398"/>
+            <point key="canvasLocation" x="1550.7246376811595" y="397.76785714285711"/>
         </scene>
         <!--Add My Prompt View Controller-->
         <scene sceneID="VbG-Xt-PnQ">
@@ -422,7 +425,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1eq-31-Dk3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1554" y="398"/>
+            <point key="canvasLocation" x="2463.768115942029" y="397.76785714285711"/>
         </scene>
         <!--Home Screen View Controller-->
         <scene sceneID="BPj-qX-AFS">
@@ -570,13 +573,13 @@
         <!--Write-->
         <scene sceneID="7OS-gL-TNu">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="tQ5-s0-X7j" customClass="WritingScreenViewController" customModule="FIT3178_Assignment" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="tQ5-s0-X7j" customClass="WritingScreenViewController" customModule="FIT3178_Assignment" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a0g-mD-pCC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zBM-gb-TtG">
-                                <rect key="frame" x="20" y="328" width="374" height="485"/>
+                                <rect key="frame" x="20" y="328" width="374" height="445"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                 <color key="textColor" systemColor="labelColor"/>
@@ -620,17 +623,26 @@
                                     <constraint firstItem="aNp-EF-5BC" firstAttribute="leading" secondItem="YFN-xs-gEe" secondAttribute="leading" constant="20" id="yER-ai-2i0"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zzE-Zg-wRa">
+                                <rect key="frame" x="20" y="773" width="374" height="40"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Post"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kaH-hS-Nb7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="zzE-Zg-wRa" secondAttribute="trailing" constant="20" id="5j4-N1-OQf"/>
                             <constraint firstItem="zBM-gb-TtG" firstAttribute="leading" secondItem="kaH-hS-Nb7" secondAttribute="leading" constant="20" id="6bL-n7-bsH"/>
+                            <constraint firstItem="zzE-Zg-wRa" firstAttribute="top" secondItem="zBM-gb-TtG" secondAttribute="bottom" id="9DT-RU-a2I"/>
                             <constraint firstItem="zBM-gb-TtG" firstAttribute="top" secondItem="YFN-xs-gEe" secondAttribute="bottom" constant="20" id="9xA-IA-BRY"/>
                             <constraint firstItem="kaH-hS-Nb7" firstAttribute="trailing" secondItem="YFN-xs-gEe" secondAttribute="trailing" constant="20" id="A1s-sk-d15"/>
                             <constraint firstItem="YFN-xs-gEe" firstAttribute="top" secondItem="kaH-hS-Nb7" secondAttribute="top" constant="20" id="RYV-xT-ppp"/>
                             <constraint firstItem="kaH-hS-Nb7" firstAttribute="trailing" secondItem="zBM-gb-TtG" secondAttribute="trailing" constant="20" id="UQc-lG-vdw"/>
-                            <constraint firstItem="kaH-hS-Nb7" firstAttribute="bottom" secondItem="zBM-gb-TtG" secondAttribute="bottom" id="YUF-T9-NJK"/>
+                            <constraint firstItem="kaH-hS-Nb7" firstAttribute="bottom" secondItem="zBM-gb-TtG" secondAttribute="bottom" constant="40" id="YUF-T9-NJK"/>
                             <constraint firstItem="YFN-xs-gEe" firstAttribute="leading" secondItem="kaH-hS-Nb7" secondAttribute="leading" constant="20" id="kfA-97-PPf"/>
+                            <constraint firstItem="zzE-Zg-wRa" firstAttribute="leading" secondItem="a0g-mD-pCC" secondAttribute="leading" constant="20" id="mAL-kL-IYM"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="zzE-Zg-wRa" secondAttribute="bottom" id="yGg-sN-ITk"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Write" id="oPd-Py-2Dt">
@@ -670,7 +682,29 @@
             </objects>
             <point key="canvasLocation" x="-297.10144927536237" y="-433.25892857142856"/>
         </scene>
+        <!--Drafts-->
+        <scene sceneID="KRI-gl-pc4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tg9-bZ-v4p" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Drafts" image="square.and.pencil" catalog="system" id="5lP-H5-BtJ"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="F46-ke-I8T">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="wIM-3q-vQI" kind="relationship" relationship="rootViewController" id="kOH-oN-FNq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3w9-Tc-Xdf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1284.0579710144928" y="314.73214285714283"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="j1r-jt-ugw"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="person" catalog="system" width="128" height="117"/>

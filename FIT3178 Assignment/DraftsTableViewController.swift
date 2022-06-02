@@ -13,6 +13,7 @@ class DraftsTableViewController: UITableViewController, CoreDataListener {
     var allDrafts: [StoryDraft] = []
     var listenerType = CoreDataListenerType.draft
     weak var coreDataController: CoreDataProtocol?
+    var selectedDraft: StoryDraft?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,8 +48,9 @@ class DraftsTableViewController: UITableViewController, CoreDataListener {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let draft = allDrafts[indexPath.row]
+        selectedDraft = allDrafts[indexPath.row]
         // NAVIGATE TO WRITING SCREEN
+        performSegue(withIdentifier: "showDraftWritingScreenSegue", sender: nil)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -102,14 +104,20 @@ class DraftsTableViewController: UITableViewController, CoreDataListener {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "showDraftWritingScreenSegue" {
+            let destination = segue.destination as! WritingScreenViewController
+            let currentPrompt = FavouritePrompt()
+            currentPrompt.text = selectedDraft?.promptText
+            currentPrompt.imageURL = selectedDraft?.promptImage
+            destination.currentPrompt = currentPrompt
+            destination.currentStoryText = selectedDraft?.draftText
+        }
     }
-    */
+    
 
 }

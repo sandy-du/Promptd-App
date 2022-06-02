@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class CoreDataController: NSObject, CoreDataProtocol, NSFetchedResultsControllerDelegate {
     
@@ -92,11 +93,31 @@ class CoreDataController: NSObject, CoreDataProtocol, NSFetchedResultsController
     }
     
     func addDraft(prompt: FavouritePrompt, text: String) -> StoryDraft {
-        let draft = NSEntityDescription.insertNewObject(forEntityName: "StoryDraft", into: persistentContainer.viewContext) as! StoryDraft
-        draft.promptImage = prompt.imageURL
-        draft.promptText = prompt.text
-        draft.draftText = text
-        return draft
+        
+        var draft: StoryDraft?
+        
+        // Checks if a draft already exists for this prompt
+        // Reference: https://stackoverflow.com/questions/64192760/coredata-if-something-exists-dont-save-it-if-it-doesnt-exists-then-save-it
+        do {
+            let context = persistentContainer.viewContext
+            let request: NSFetchRequest<StoryDraft> = StoryDraft.fetchRequest()
+            request.predicate = NSPredicate(format: "promptText == %@", prompt.text!)
+            let noRecords = try context.count(for: request)
+            if noRecords == 0 {
+                // If number of records is 0, the draft doesn't exist yet so add
+                draft = NSEntityDescription.insertNewObject(forEntityName: "StoryDraft", into: persistentContainer.viewContext) as? StoryDraft
+                draft!.promptImage = prompt.imageURL
+                draft!.promptText = prompt.text
+                draft!.draftText = text
+            } else {
+                request.fetchLimit = 1
+                draft = try context.fetch(request).first
+                draft?.draftText = text
+            }
+        } catch {
+            print("Error saving context \(error)")
+        }
+        return draft!
     }
     
     func deleteDraft(draft: StoryDraft) {

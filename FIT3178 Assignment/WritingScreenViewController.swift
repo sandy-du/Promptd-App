@@ -13,6 +13,7 @@ class WritingScreenViewController: UIViewController {
     @IBOutlet weak var storyTextField: UITextView!
     var currentPrompt: FavouritePrompt?
     var currentImage: UIImage?
+    var currentStoryText: String?
     weak var coreDataController: CoreDataProtocol?
     @IBOutlet weak var promptWriteView: UIView!
     @IBOutlet weak var promptTextLabel: UILabel!
@@ -32,6 +33,9 @@ class WritingScreenViewController: UIViewController {
         promptImageView.image = currentImage
         promptImageView.contentMode = .scaleAspectFill
         promptImageView.clipsToBounds = true
+        
+        // TESTING PURPOSE TO SEE IF THE TEXTVIEW TEXT CAN BE CHANGED BASED ON SEGUE
+        storyTextField.text = currentStoryText ?? ""
     }
     
     @IBAction func saveStoryToUser(_ sender: Any) {
