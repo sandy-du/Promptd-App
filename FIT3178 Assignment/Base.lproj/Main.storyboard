@@ -316,46 +316,12 @@
                     </navigationItem>
                     <connections>
                         <segue destination="Onb-Wq-nPd" kind="show" identifier="addMyPromptSegue" id="q6G-YI-ZRg"/>
-                        <segue destination="XPe-Y9-6Pk" kind="show" identifier="showMyPromptsWritingScreen" id="Ttx-OE-g3n"/>
+                        <segue destination="tQ5-s0-X7j" kind="show" identifier="showMyPromptWritingScreenSegue" id="YhL-il-LfP"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xDV-1Z-L2f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="639.13043478260875" y="397.76785714285711"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="ld9-I2-T5O">
-            <objects>
-                <viewController id="XPe-Y9-6Pk" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="7Mp-a9-h9h">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qtH-ui-P4B">
-                                <rect key="frame" x="20" y="88" width="374" height="725"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="Pes-Il-MDY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="Pes-Il-MDY" firstAttribute="trailing" secondItem="qtH-ui-P4B" secondAttribute="trailing" constant="20" id="Dnz-Fp-drB"/>
-                            <constraint firstItem="qtH-ui-P4B" firstAttribute="leading" secondItem="Pes-Il-MDY" secondAttribute="leading" constant="20" id="I4d-uW-M4f"/>
-                            <constraint firstItem="qtH-ui-P4B" firstAttribute="top" secondItem="Pes-Il-MDY" secondAttribute="top" id="iIm-ZF-ska"/>
-                            <constraint firstItem="Pes-Il-MDY" firstAttribute="bottom" secondItem="qtH-ui-P4B" secondAttribute="bottom" id="jQX-Dz-mfY"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="WgV-4Y-Wfr">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="hOq-P9-xJT"/>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jhv-F5-jYN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1550.7246376811595" y="397.76785714285711"/>
         </scene>
         <!--Add My Prompt View Controller-->
         <scene sceneID="VbG-Xt-PnQ">
@@ -422,6 +388,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="HyB-a9-e5n"/>
+                    <connections>
+                        <segue destination="tQ5-s0-X7j" kind="show" identifier="showFavouritedWritingScreenSegue" id="bHY-xk-Tue"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1eq-31-Dk3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -703,7 +672,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="TMQ-LZ-ZdU"/>
+        <segue reference="bHY-xk-Tue"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="house" catalog="system" width="128" height="106"/>

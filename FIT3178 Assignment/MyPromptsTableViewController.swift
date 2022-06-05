@@ -14,6 +14,7 @@ class MyPromptsTableViewController: UITableViewController, DatabaseListener {
     var allMyPrompts: [Prompt] = []
     var listenerType = ListenerType.myPrompts
     let CELL_MYPROMPT = "myPromptCell"
+    var currentPrompt: Prompt?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,8 +47,8 @@ class MyPromptsTableViewController: UITableViewController, DatabaseListener {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let myPrompt = allMyPrompts[indexPath.row]
-        performSegue(withIdentifier: "showMyPromptsWritingScreen", sender: nil)
+        currentPrompt = allMyPrompts[indexPath.row]
+        performSegue(withIdentifier: "showMyPromptWritingScreenSegue", sender: nil)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -124,13 +125,10 @@ class MyPromptsTableViewController: UITableViewController, DatabaseListener {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-        /*
-        if segue.identifier == "showMyPromptsWritingScreen" {
+        if segue.identifier == "showMyPromptWritingScreenSegue" {
             let destination = segue.destination as! WritingScreenViewController
-            destination.currentStoryText = "This is the text from the "
-        }*/
+            destination.currentPrompt = currentPrompt
+        }
     }
     
 

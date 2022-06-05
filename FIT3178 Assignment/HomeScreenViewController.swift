@@ -21,7 +21,6 @@ class HomeScreenViewController: UIViewController {
     weak var databaseController: DatabaseProtocol?
     var currentFavouritePrompt: Prompt?
     var currentPrompt: Prompt?
-    var currentImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,7 +101,6 @@ class HomeScreenViewController: UIViewController {
                         
                         if let image = UIImage(data: data) {
                             imageView.image = image
-                            currentImage = image
                         } else {
                             print("Not a valid image!")
                         }
@@ -165,7 +163,6 @@ class HomeScreenViewController: UIViewController {
             currentPrompt?.text = promptLabel.text
             currentPrompt?.imageURL = imagePromptURL
             destination.currentPrompt = currentPrompt
-            destination.currentImage = currentImage
         }
     }
     

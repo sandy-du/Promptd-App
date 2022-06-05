@@ -13,6 +13,7 @@ class FavouritePromptsTableViewController: UITableViewController, DatabaseListen
     var allFavouritePrompts: [Prompt] = []
     var listenerType = ListenerType.favouritePrompts
     let CELL_FAVPROMPT = "favouritePromptCell"
+    var currentPrompt: Prompt?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +45,12 @@ class FavouritePromptsTableViewController: UITableViewController, DatabaseListen
         content.text = favPrompt.text
         favPromptCell.contentConfiguration = content
         return favPromptCell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        currentPrompt = allFavouritePrompts[indexPath.row]
+        performSegue(withIdentifier: "showFavouritedWritingScreenSegue", sender: nil)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -100,14 +107,14 @@ class FavouritePromptsTableViewController: UITableViewController, DatabaseListen
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "showFavouritedWritingScreenSegue" {
+            let destination = segue.destination as! WritingScreenViewController
+            destination.currentPrompt = currentPrompt
+        }
     }
-    */
 
 }

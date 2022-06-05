@@ -12,7 +12,6 @@ class WritingScreenViewController: UIViewController {
     //weak var databaseController: DatabaseProtocol?
     @IBOutlet weak var storyTextField: UITextView!
     var currentPrompt: Prompt?
-    var currentImage: UIImage?
     var currentStoryText: String?
     weak var coreDataController: CoreDataProtocol?
     @IBOutlet weak var promptWriteView: UIView!
@@ -63,7 +62,6 @@ class WritingScreenViewController: UIViewController {
                         
                         if let image = UIImage(data: data) {
                             promptImageView.image = image
-                            currentImage = image
                         } else {
                             print("Not a valid image!")
                         }
