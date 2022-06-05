@@ -28,6 +28,6 @@ protocol CoreDataProtocol: AnyObject {
     
     func addListener(listener: CoreDataListener)
     func removeListener(listener: CoreDataListener)
-    func addDraft(prompt: FavouritePrompt, text: String) -> StoryDraft
+    func addDraft(prompt: Prompt, text: String) -> StoryDraft
     func deleteDraft(draft: StoryDraft)
 }

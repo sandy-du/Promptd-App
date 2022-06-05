@@ -92,7 +92,7 @@ class CoreDataController: NSObject, CoreDataProtocol, NSFetchedResultsController
         return [StoryDraft]()
     }
     
-    func addDraft(prompt: FavouritePrompt, text: String) -> StoryDraft {
+    func addDraft(prompt: Prompt, text: String) -> StoryDraft {
         
         var draft: StoryDraft?
         

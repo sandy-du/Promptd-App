@@ -111,7 +111,7 @@ class DraftsTableViewController: UITableViewController, CoreDataListener {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDraftWritingScreenSegue" {
             let destination = segue.destination as! WritingScreenViewController
-            let currentPrompt = FavouritePrompt()
+            let currentPrompt = Prompt()
             currentPrompt.text = selectedDraft?.promptText
             currentPrompt.imageURL = selectedDraft?.promptImage
             destination.currentPrompt = currentPrompt

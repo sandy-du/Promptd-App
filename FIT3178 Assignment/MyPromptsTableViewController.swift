@@ -11,7 +11,7 @@ class MyPromptsTableViewController: UITableViewController, DatabaseListener {
     
 
     weak var databaseController: DatabaseProtocol?
-    var allMyPrompts: [MyPrompt] = []
+    var allMyPrompts: [Prompt] = []
     var listenerType = ListenerType.myPrompts
     let CELL_MYPROMPT = "myPromptCell"
     
@@ -65,12 +65,12 @@ class MyPromptsTableViewController: UITableViewController, DatabaseListener {
         databaseController?.removeListener(listener: self)
     }
     
-    func onMyPromptsChange(change: DatabaseChange, myPrompts: [MyPrompt]) {
+    func onMyPromptsChange(change: DatabaseChange, myPrompts: [Prompt]) {
         allMyPrompts = myPrompts
         tableView.reloadData()
     }
     
-    func onFavouritePromptsChange(change: DatabaseChange, favouritePrompts: [FavouritePrompt]) {
+    func onFavouritePromptsChange(change: DatabaseChange, favouritePrompts: [Prompt]) {
         //
     }
     

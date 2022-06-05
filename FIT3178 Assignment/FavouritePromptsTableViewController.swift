@@ -10,7 +10,7 @@ import UIKit
 class FavouritePromptsTableViewController: UITableViewController, DatabaseListener {
     
     weak var databaseController: DatabaseProtocol?
-    var allFavouritePrompts: [FavouritePrompt] = []
+    var allFavouritePrompts: [Prompt] = []
     var listenerType = ListenerType.favouritePrompts
     let CELL_FAVPROMPT = "favouritePromptCell"
     
@@ -56,11 +56,11 @@ class FavouritePromptsTableViewController: UITableViewController, DatabaseListen
         databaseController?.removeListener(listener: self)
     }
     
-    func onMyPromptsChange(change: DatabaseChange, myPrompts: [MyPrompt]) {
+    func onMyPromptsChange(change: DatabaseChange, myPrompts: [Prompt]) {
         //
     }
     
-    func onFavouritePromptsChange(change: DatabaseChange, favouritePrompts: [FavouritePrompt]) {
+    func onFavouritePromptsChange(change: DatabaseChange, favouritePrompts: [Prompt]) {
         allFavouritePrompts = favouritePrompts
         tableView.reloadData()
     }

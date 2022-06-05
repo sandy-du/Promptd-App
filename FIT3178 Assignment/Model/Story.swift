@@ -12,7 +12,7 @@ import CloudKit
 class Story: NSObject, Codable {
     
     @DocumentID var id: String?
-    var prompt: FavouritePrompt?
+    var prompt: Prompt?
     var text: String?
 
 }

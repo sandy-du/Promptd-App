@@ -24,23 +24,23 @@ enum ListenerType {
 
 protocol DatabaseListener: AnyObject {
     var listenerType: ListenerType {get set}
-    func onMyPromptsChange(change: DatabaseChange, myPrompts: [MyPrompt] )
-    func onFavouritePromptsChange(change: DatabaseChange, favouritePrompts: [FavouritePrompt])
+    func onMyPromptsChange(change: DatabaseChange, myPrompts: [Prompt] )
+    func onFavouritePromptsChange(change: DatabaseChange, favouritePrompts: [Prompt])
 }
 
 protocol DatabaseProtocol: AnyObject {
     func cleanup()
     func addListener(listener: DatabaseListener)
     func removeListener(listener: DatabaseListener)
-    func addMyPrompt(text: String) -> MyPrompt
-    func deleteMyPrompt(myPrompt: MyPrompt)
+    func addMyPrompt(text: String) -> Prompt
+    func deleteMyPrompt(myPrompt: Prompt)
     
-    func addFavouritePrompt(imageURL: String ,text: String) -> FavouritePrompt
-    func deleteFavouritePrompt(favouritePrompt: FavouritePrompt)
+    func addFavouritePrompt(imageURL: String ,text: String) -> Prompt
+    func deleteFavouritePrompt(favouritePrompt: Prompt)
     
     func createNewAccount(email: String, password: String)
     func signInWithAccount(email: String, password: String)
     
-    func addStoryToUser(prompt: FavouritePrompt, text: String) -> Story
+    func addStoryToUser(prompt: Prompt, text: String) -> Story
     func deleteStoryFromUser(story: Story)
 }

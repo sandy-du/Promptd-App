@@ -13,8 +13,8 @@ import simd
 class FirebaseController: NSObject, DatabaseProtocol {
     
     var listeners = MulticastDelegate<DatabaseListener>()
-    var favouritePromptsList: [FavouritePrompt] = []
-    var myPromptsList: [MyPrompt] = []
+    var favouritePromptsList: [Prompt] = []
+    var myPromptsList: [Prompt] = []
     
     // References to the Firebase Authentication System, Firebase Firestore Database
     var authController: Auth
@@ -29,8 +29,8 @@ class FirebaseController: NSObject, DatabaseProtocol {
         FirebaseApp.configure()
         authController = Auth.auth()
         database = Firestore.firestore()
-        myPromptsList = [MyPrompt]()
-        favouritePromptsList = [FavouritePrompt]()
+        myPromptsList = [Prompt]()
+        favouritePromptsList = [Prompt]()
         super.init()
         
         /*
@@ -66,8 +66,9 @@ class FirebaseController: NSObject, DatabaseProtocol {
         listeners.removeDelegate(listener)
     }
     
-    func addMyPrompt(text: String) -> MyPrompt {
-        let myPrompt = MyPrompt()
+    
+    func addMyPrompt(text: String) -> Prompt {
+        let myPrompt = Prompt()
         myPrompt.text = text
         
         do {
@@ -80,14 +81,14 @@ class FirebaseController: NSObject, DatabaseProtocol {
         return myPrompt
     }
     
-    func deleteMyPrompt(myPrompt: MyPrompt) {
+    func deleteMyPrompt(myPrompt: Prompt) {
         if let myPromptID = myPrompt.id {
             myPromptsRef?.document(myPromptID).delete()
         }
     }
     
-    func addFavouritePrompt(imageURL: String, text: String) -> FavouritePrompt {
-        let favouritePrompt = FavouritePrompt()
+    func addFavouritePrompt(imageURL: String, text: String) -> Prompt {
+        let favouritePrompt = Prompt()
         favouritePrompt.imageURL = imageURL
         favouritePrompt.text = text
         do {
@@ -100,13 +101,13 @@ class FirebaseController: NSObject, DatabaseProtocol {
         return favouritePrompt
     }
     
-    func deleteFavouritePrompt(favouritePrompt: FavouritePrompt) {
+    func deleteFavouritePrompt(favouritePrompt: Prompt) {
         if let favouritePromptID = favouritePrompt.id {
             favouritePromptsRef?.document(favouritePromptID).delete()
         }
-    }
+    } 
     
-    func addStoryToUser(prompt: FavouritePrompt, text: String) -> Story {
+    func addStoryToUser(prompt: Prompt, text: String) -> Story {
         let story = Story()
         story.text = text
         story.prompt = prompt
@@ -190,13 +191,13 @@ class FirebaseController: NSObject, DatabaseProtocol {
     func parseMyPromptsSnapshot(snapshot: QuerySnapshot){
         print("Snapshot count: \(snapshot.count)")
         snapshot.documentChanges.forEach { (change) in
-            var parsedMyPrompt: MyPrompt?
+            var parsedMyPrompt: Prompt?
             
             do {
                 print(change.document.data())
-                parsedMyPrompt = try change.document.data(as: MyPrompt.self)
+                parsedMyPrompt = try change.document.data(as: Prompt.self)
             } catch let error {
-                print("Unable to decode hero. Is the hero malformed?")
+                print("Unable to decode prompt. Is the prompt malformed?")
                 print(error.localizedDescription)
                 return
             }
@@ -225,13 +226,13 @@ class FirebaseController: NSObject, DatabaseProtocol {
     func parseFavouritePromptsSnapshot(snapshot: QuerySnapshot) {
         print("Snapshot count: \(snapshot.count)")
         snapshot.documentChanges.forEach { (change) in
-            var parsedFavouritePrompt: FavouritePrompt?
+            var parsedFavouritePrompt: Prompt?
             
             do {
                 print(change.document.data())
-                parsedFavouritePrompt = try change.document.data(as: FavouritePrompt.self)
+                parsedFavouritePrompt = try change.document.data(as: Prompt.self)
             } catch let error {
-                print("Unable to decode hero. Is the hero malformed?")
+                print("Unable to decode prompt. Is the prompt malformed?")
                 print(error.localizedDescription)
                 return
             }

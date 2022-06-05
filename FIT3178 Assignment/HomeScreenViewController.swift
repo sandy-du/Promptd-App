@@ -19,8 +19,8 @@ class HomeScreenViewController: UIViewController {
     var imagePromptURL: String?
     var promptFavourited = false
     weak var databaseController: DatabaseProtocol?
-    var currentFavouritePrompt: FavouritePrompt?
-    var currentPrompt: FavouritePrompt?
+    var currentFavouritePrompt: Prompt?
+    var currentPrompt: Prompt?
     var currentImage: UIImage?
     
     override func viewDidLoad() {
@@ -43,7 +43,7 @@ class HomeScreenViewController: UIViewController {
         getRandomPrompt()
         
         // Set the new prompt as the current prompt
-        currentPrompt = FavouritePrompt()
+        currentPrompt = Prompt()
         
     }
     

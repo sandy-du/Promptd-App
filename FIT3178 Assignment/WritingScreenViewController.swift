@@ -11,7 +11,7 @@ class WritingScreenViewController: UIViewController {
     
     //weak var databaseController: DatabaseProtocol?
     @IBOutlet weak var storyTextField: UITextView!
-    var currentPrompt: FavouritePrompt?
+    var currentPrompt: Prompt?
     var currentImage: UIImage?
     var currentStoryText: String?
     weak var coreDataController: CoreDataProtocol?
