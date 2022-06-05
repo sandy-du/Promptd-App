@@ -30,10 +30,16 @@ class WritingScreenViewController: UIViewController {
         promptWriteView.layer.cornerRadius = 10
         promptWriteView.clipsToBounds = true
         promptTextLabel.text = currentPrompt?.text
-        promptImageView.image = currentImage
-        promptImageView.contentMode = .scaleAspectFill
-        promptImageView.clipsToBounds = true
         
+        if currentPrompt?.imageURL != nil {
+            getImage()
+            promptImageView.contentMode = .scaleAspectFill
+            promptImageView.clipsToBounds = true
+        } else {
+            promptImageView.removeFromSuperview()
+            promptTextLabel.font = promptTextLabel.font.withSize(20)
+        }
+    
         // TESTING PURPOSE TO SEE IF THE TEXTVIEW TEXT CAN BE CHANGED BASED ON SEGUE
         storyTextField.text = currentStoryText ?? ""
     }
@@ -43,6 +49,30 @@ class WritingScreenViewController: UIViewController {
         let _ = coreDataController?.addDraft(prompt: currentPrompt!, text: storyTextField.text)
         navigationController?.popViewController(animated: true)
         
+    }
+    func getImage() {
+        if let imageURL = currentPrompt?.imageURL {
+            let requestURL = URL(string: imageURL)
+            if let requestURL = requestURL {
+                Task {
+                    do {
+                        let (data, response ) = try await URLSession.shared.data(from: requestURL)
+                        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                            throw ImageError.invalidServerResponse
+                        }
+                        
+                        if let image = UIImage(data: data) {
+                            promptImageView.image = image
+                            currentImage = image
+                        } else {
+                            print("Not a valid image!")
+                        }
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+        }
     }
     
     /*
