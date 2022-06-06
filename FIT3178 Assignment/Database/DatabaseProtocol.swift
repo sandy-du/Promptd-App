@@ -17,7 +17,7 @@ enum DatabaseChange {
 enum ListenerType {
     case favouritePrompts
     case myPrompts
-    case stories
+    case postedStories
     case users
     case all
 }
@@ -26,6 +26,7 @@ protocol DatabaseListener: AnyObject {
     var listenerType: ListenerType {get set}
     func onMyPromptsChange(change: DatabaseChange, myPrompts: [Prompt] )
     func onFavouritePromptsChange(change: DatabaseChange, favouritePrompts: [Prompt])
+    func onPostedStoriesChange(change: DatabaseChange, postedStories: [Story])
 }
 
 protocol DatabaseProtocol: AnyObject {

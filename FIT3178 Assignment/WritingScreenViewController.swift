@@ -9,7 +9,7 @@ import UIKit
 
 class WritingScreenViewController: UIViewController {
     
-    //weak var databaseController: DatabaseProtocol?
+    weak var databaseController: DatabaseProtocol?
     @IBOutlet weak var storyTextField: UITextView!
     var currentPrompt: Prompt?
     var currentStoryText: String?
@@ -21,9 +21,8 @@ class WritingScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        //databaseController = appDelegate?.databaseController
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        databaseController = appDelegate?.databaseController
         coreDataController = appDelegate?.coreDataController
         
         promptWriteView.layer.cornerRadius = 10
@@ -73,6 +72,10 @@ class WritingScreenViewController: UIViewController {
         }
     }
     
+    @IBAction func postDraft(_ sender: Any) {
+        let _ = databaseController?.addStoryToUser(prompt: currentPrompt!, text: storyTextField.text)
+        navigationController?.popViewController(animated: true)
+    }
     /*
     // MARK: - Navigation
 

@@ -15,12 +15,14 @@ class FirebaseController: NSObject, DatabaseProtocol {
     var listeners = MulticastDelegate<DatabaseListener>()
     var favouritePromptsList: [Prompt] = []
     var myPromptsList: [Prompt] = []
+    var postedStoriesList: [Story] = []
     
     // References to the Firebase Authentication System, Firebase Firestore Database
     var authController: Auth
     var database: Firestore
     var myPromptsRef: CollectionReference?
     var favouritePromptsRef: CollectionReference?
+    var postedStoriesRef: CollectionReference?
     var usersRefs: CollectionReference?
     var currentUser: FirebaseAuth.User?
     
@@ -31,6 +33,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
         database = Firestore.firestore()
         myPromptsList = [Prompt]()
         favouritePromptsList = [Prompt]()
+        postedStoriesList = [Story]()
         super.init()
         
         /*
@@ -59,6 +62,10 @@ class FirebaseController: NSObject, DatabaseProtocol {
         
         if listener.listenerType == .favouritePrompts || listener.listenerType == .all {
             listener.onFavouritePromptsChange(change: .update, favouritePrompts: favouritePromptsList)
+        }
+        
+        if listener.listenerType == .postedStories || listener.listenerType == .all {
+            listener.onPostedStoriesChange(change: .update, postedStories: postedStoriesList)
         }
     }
     
@@ -112,7 +119,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
         story.text = text
         story.prompt = prompt
         usersRefs = database.collection("users")
-        let storiesRefs = usersRefs?.document(currentUser?.uid ?? "").collection("stories")
+        let storiesRefs = usersRefs?.document(currentUser?.uid ?? "").collection("postedStories")
         
         do {
             if let storyRef = try storiesRefs?.addDocument(from: story){
@@ -126,7 +133,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
     
     func deleteStoryFromUser(story: Story) {
         usersRefs = database.collection("users")
-        let storiesRefs = usersRefs?.document(currentUser?.uid ?? "").collection("stories")
+        let storiesRefs = usersRefs?.document(currentUser?.uid ?? "").collection("postedStories")
         
         if let storyID = story.id {
             storiesRefs?.document(storyID).delete()
@@ -185,6 +192,20 @@ class FirebaseController: NSObject, DatabaseProtocol {
                 return
             }
             self.parseFavouritePromptsSnapshot(snapshot: querySnapshot)
+        }
+        if self.postedStoriesRef == nil {
+            self.setupPostedStoriesListener()
+        }
+    }
+    
+    func setupPostedStoriesListener(){
+        postedStoriesRef = usersRefs?.document(currentUser?.uid ?? "").collection("postedStories")
+        postedStoriesRef?.addSnapshotListener{ (querySnapshot, error) in
+            guard let querySnapshot = querySnapshot else {
+                print("Failed to fetch documents with error: \(String(describing: error))")
+                return
+            }
+            self.parsePostedStoriesSnapShot(snapshot: querySnapshot)
         }
     }
     
@@ -258,5 +279,38 @@ class FirebaseController: NSObject, DatabaseProtocol {
         }
     }
     
-    
+    func parsePostedStoriesSnapShot(snapshot: QuerySnapshot) {
+        print("Snapshot count: \(snapshot.count)")
+        snapshot.documentChanges.forEach { (change) in
+            var parsedPostedStory: Story?
+            
+            do {
+                print(change.document.data())
+                parsedPostedStory = try change.document.data(as: Story.self)
+            } catch let error {
+                print("Unable to decode story. Is the story malformed?")
+                print(error.localizedDescription)
+                return
+            }
+            
+            guard let postedStory = parsedPostedStory else {
+                print("Document doesn't exist")
+                return;
+            }
+            if change.type == .added {
+                print("Change.newIndex: \(change.newIndex)")
+                postedStoriesList.insert(postedStory, at: Int(change.newIndex))
+            } else if change.type == .modified {
+                postedStoriesList[Int(change.oldIndex)] = postedStory
+            } else if change.type == .removed {
+                postedStoriesList.remove(at: Int(change.oldIndex))
+            }
+        }
+        
+        listeners.invoke { (listener) in
+            if listener.listenerType == ListenerType.postedStories || listener.listenerType == ListenerType.all {
+                listener.onPostedStoriesChange(change: .update, postedStories: postedStoriesList)
+            }
+        }
+    }
 }
