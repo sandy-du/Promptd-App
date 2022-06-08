@@ -24,6 +24,10 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         databaseController = appDelegate?.databaseController
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return allPostedStories.count
     }
@@ -58,6 +62,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         allPostedStories = postedStories
         collectionView.reloadData()
     }
+    
+    func onFriendsChange(change: DatabaseChange, friends: [User]) {
+        //
+    }
+    
 
     /*
     // MARK: - Navigation

@@ -16,6 +16,8 @@ class FirebaseController: NSObject, DatabaseProtocol {
     var favouritePromptsList: [Prompt] = []
     var myPromptsList: [Prompt] = []
     var postedStoriesList: [Story] = []
+    var friendList: [User] = []
+    var allUsersList: [User] = []
     
     // References to the Firebase Authentication System, Firebase Firestore Database
     var authController: Auth
@@ -24,6 +26,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
     var favouritePromptsRef: CollectionReference?
     var postedStoriesRef: CollectionReference?
     var usersRefs: CollectionReference?
+    var friendsRef: CollectionReference?
     var currentUser: FirebaseAuth.User?
     
     override init(){
@@ -34,6 +37,8 @@ class FirebaseController: NSObject, DatabaseProtocol {
         myPromptsList = [Prompt]()
         favouritePromptsList = [Prompt]()
         postedStoriesList = [Story]()
+        friendList = [User]()
+        allUsersList = [User]()
         super.init()
         
         /*
@@ -66,6 +71,18 @@ class FirebaseController: NSObject, DatabaseProtocol {
         
         if listener.listenerType == .postedStories || listener.listenerType == .all {
             listener.onPostedStoriesChange(change: .update, postedStories: postedStoriesList)
+        }
+        
+        if listener.listenerType == .postedStories || listener.listenerType == .all {
+            listener.onPostedStoriesChange(change: .update, postedStories: postedStoriesList)
+        }
+        
+        if listener.listenerType == .friends || listener.listenerType == .all {
+            listener.onFriendsChange(change: .update, friends: friendList)
+        }
+        
+        if listener.listenerType == .allUsers || listener.listenerType == .all {
+            listener.onFriendsChange(change: .update, friends: friendList)
         }
     }
     
@@ -140,6 +157,30 @@ class FirebaseController: NSObject, DatabaseProtocol {
         }
     }
     
+    func addFriendToUser(uid: String, username: String) -> User {
+        let friend = User()
+        friend.uid = uid
+        friend.username = username
+        usersRefs = database.collection("users")
+        let friendListRef = usersRefs?.document(currentUser?.uid ?? "").collection("friends")
+        do {
+            if let friendRef = try friendListRef?.addDocument(from: friend){
+                friend.id = friendRef.documentID
+            }
+        } catch {
+            print("Failed to serialize friends")
+        }
+        return friend
+    }
+    
+    func deleteFriendFromUser(user: User) {
+        usersRefs = database.collection("users")
+        let friendListRef = usersRefs?.document(currentUser?.uid ?? "").collection("friends")
+        if let friendID = user.id {
+            friendListRef?.document(friendID).delete()
+        }
+    }
+    
     func createNewAccount(email: String, password: String) {
         usersRefs = database.collection("users")
         authController.createUser(withEmail: email, password: password) { authResult, error in
@@ -206,6 +247,20 @@ class FirebaseController: NSObject, DatabaseProtocol {
                 return
             }
             self.parsePostedStoriesSnapShot(snapshot: querySnapshot)
+        }
+        if self.friendsRef == nil {
+            self.setupFriendsListener()
+        }
+    }
+    
+    func setupFriendsListener() {
+        friendsRef = usersRefs?.document(currentUser?.uid ?? "").collection("friends")
+        friendsRef?.addSnapshotListener{ (querySnapshot, error) in
+            guard let querySnapshot = querySnapshot else {
+                print("Failed to fetch documents with error: \(String(describing: error))")
+                return
+            }
+            self.parseFriendsSnapShot(snapshot: querySnapshot)
         }
     }
     
@@ -310,6 +365,41 @@ class FirebaseController: NSObject, DatabaseProtocol {
         listeners.invoke { (listener) in
             if listener.listenerType == ListenerType.postedStories || listener.listenerType == ListenerType.all {
                 listener.onPostedStoriesChange(change: .update, postedStories: postedStoriesList)
+            }
+        }
+    }
+    
+    func parseFriendsSnapShot(snapshot: QuerySnapshot) {
+        print("Snapshot count: \(snapshot.count)")
+        snapshot.documentChanges.forEach { (change) in
+            var parsedFriend: User?
+            
+            do {
+                print(change.document.data())
+                parsedFriend = try change.document.data(as: User.self)
+            } catch let error {
+                print("Unable to decode friend. Is the friend malformed?")
+                print(error.localizedDescription)
+                return
+            }
+            
+            guard let friend = parsedFriend else {
+                print("Document doesn't exist")
+                return;
+            }
+            if change.type == .added {
+                print("Change.newIndex: \(change.newIndex)")
+                friendList.insert(friend, at: Int(change.newIndex))
+            } else if change.type == .modified {
+                friendList[Int(change.oldIndex)] = friend
+            } else if change.type == .removed {
+                friendList.remove(at: Int(change.oldIndex))
+            }
+        }
+        
+        listeners.invoke { (listener) in
+            if listener.listenerType == ListenerType.friends || listener.listenerType == ListenerType.all {
+                listener.onFriendsChange(change: .update, friends: friendList)
             }
         }
     }

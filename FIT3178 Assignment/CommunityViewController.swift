@@ -7,15 +7,29 @@
 
 import UIKit
 
-class CommunityViewController: UIViewController {
-
+class CommunityViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    let CELL_FRIENDPOSTED = "friendsPostedCell"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        // Return total friends stories
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CELL_FRIENDPOSTED, for: indexPath) as! FriendsPostedCell
+        return cell
+    }
 
+    @IBAction func goToMyFriends(_ sender: Any) {
+        performSegue(withIdentifier: "friendsListScreenSegue", sender: nil)
+    }
     /*
     // MARK: - Navigation
 
@@ -26,4 +40,8 @@ class CommunityViewController: UIViewController {
     }
     */
 
+}
+
+class FriendsPostedCell: UICollectionViewCell {
+    
 }

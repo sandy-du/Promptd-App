@@ -19,6 +19,8 @@ enum ListenerType {
     case myPrompts
     case postedStories
     case users
+    case friends
+    case allUsers
     case all
 }
 
@@ -27,6 +29,7 @@ protocol DatabaseListener: AnyObject {
     func onMyPromptsChange(change: DatabaseChange, myPrompts: [Prompt] )
     func onFavouritePromptsChange(change: DatabaseChange, favouritePrompts: [Prompt])
     func onPostedStoriesChange(change: DatabaseChange, postedStories: [Story])
+    func onFriendsChange(change: DatabaseChange, friends: [User])
 }
 
 protocol DatabaseProtocol: AnyObject {
@@ -44,4 +47,7 @@ protocol DatabaseProtocol: AnyObject {
     
     func addStoryToUser(prompt: Prompt, text: String) -> Story
     func deleteStoryFromUser(story: Story)
+    
+    func addFriendToUser(uid: String, username: String) -> User
+    func deleteFriendFromUser(user: User)
 }

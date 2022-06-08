@@ -13,6 +13,8 @@ class User: NSObject, Codable {
     
     @DocumentID var id: String?
     var uid: String?
-    var stories: [Story] = []
+    var username: String?
+    var postedStories: [Story] = []
+    var friends: [User] = []
 
 }
