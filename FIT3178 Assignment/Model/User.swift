@@ -14,7 +14,14 @@ class User: NSObject, Codable {
     @DocumentID var id: String?
     var uid: String?
     var username: String?
-    var postedStories: [Story] = []
-    var friends: [User] = []
+    var postedStories: [Story]?
+    var friends: [User]?
+    
+    enum CodingKeys: String, CodingKey {
+        case uid
+        case username
+        case postedStories
+        case friends
+    }
 
 }

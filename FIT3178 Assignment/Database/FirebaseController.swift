@@ -17,6 +17,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
     var myPromptsList: [Prompt] = []
     var postedStoriesList: [Story] = []
     var friendList: [User] = []
+    var friendRequestList: [User] = []
     var allUsersList: [User] = []
     
     // References to the Firebase Authentication System, Firebase Firestore Database
@@ -27,17 +28,22 @@ class FirebaseController: NSObject, DatabaseProtocol {
     var postedStoriesRef: CollectionReference?
     var usersRefs: CollectionReference?
     var friendsRef: CollectionReference?
+    var friendRequestRef: CollectionReference?
     var currentUser: FirebaseAuth.User?
+    // Current user object mapped
+    var signedInUser: User
     
     override init(){
         // Configure and initialize each of the Firebase frameworks
         FirebaseApp.configure()
         authController = Auth.auth()
         database = Firestore.firestore()
+        signedInUser = User()
         myPromptsList = [Prompt]()
         favouritePromptsList = [Prompt]()
         postedStoriesList = [Story]()
         friendList = [User]()
+        friendRequestList = [User]()
         allUsersList = [User]()
         super.init()
         
@@ -81,8 +87,12 @@ class FirebaseController: NSObject, DatabaseProtocol {
             listener.onFriendsChange(change: .update, friends: friendList)
         }
         
+        if listener.listenerType == .friendRequests || listener.listenerType == .all {
+            listener.onFriendRequestsChange(change: .update, friendRequests: friendRequestList)
+        }
+        
         if listener.listenerType == .allUsers || listener.listenerType == .all {
-            listener.onFriendsChange(change: .update, friends: friendList)
+            listener.onAllUsersChange(change: .update, allUsers: allUsersList)
         }
     }
     
@@ -157,10 +167,10 @@ class FirebaseController: NSObject, DatabaseProtocol {
         }
     }
     
-    func addFriendToUser(uid: String, username: String) -> User {
-        let friend = User()
-        friend.uid = uid
-        friend.username = username
+    func addFriendToUser(friend: User) -> User {
+        //let friend = User()
+        //friend.uid = uid
+        //friend.username = username
         usersRefs = database.collection("users")
         let friendListRef = usersRefs?.document(currentUser?.uid ?? "").collection("friends")
         do {
@@ -181,20 +191,51 @@ class FirebaseController: NSObject, DatabaseProtocol {
         }
     }
     
-    func createNewAccount(email: String, password: String) {
+    // Add current user to friend's request list
+    func addUserToFriendRequest(friend: User) -> User {
+        // Create current user object
+        let currentUser = User()
+        currentUser.uid = self.signedInUser.uid
+        currentUser.username = self.signedInUser.username
+        // Get reference to the other user's friend request list
+        usersRefs = database.collection("users")
+        let userFriendRequestRef = usersRefs?.document(friend.uid ?? "").collection("friendRequests")
+        let _ = userFriendRequestRef?.document(currentUser.uid ?? "").setData(["uid": currentUser.uid ?? "", "username": currentUser.username ?? ""]) {err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+        return friend
+    }
+    
+    // delete friend from current user's request list
+    func deleteUserFromFriendRequest(friend: User) {
+        usersRefs = database.collection("users")
+        let userFriendRequestRef = usersRefs?.document(currentUser?.uid ?? "").collection("friendRequests")
+        if let friendID = friend.id {
+            userFriendRequestRef?.document(friendID).delete()
+        }
+    }
+    
+    func createNewAccount(email: String, password: String, username: String) {
         usersRefs = database.collection("users")
         authController.createUser(withEmail: email, password: password) { authResult, error in
             if let error = error {
                 fatalError("Firebase Authentication Failed with Error\(String(describing: error))")
             }
             self.currentUser = authResult?.user
-            let _ = self.usersRefs?.document((self.currentUser?.uid)!).setData(["uid": authResult?.user.uid ?? ""]) {err in
+            self.signedInUser.uid = self.currentUser?.uid
+            self.signedInUser.username = username
+            let _ = self.usersRefs?.document((self.currentUser?.uid)!).setData(["uid": authResult?.user.uid ?? "", "username": username]) {err in
                 if let err = err {
                     print("Error writing document: \(err)")
                 } else {
                     print("Document successfully written!")
                 }
             }
+            self.setupAllUsersListener()
             self.setupMyPromptsListener()
         }
     }
@@ -206,8 +247,33 @@ class FirebaseController: NSObject, DatabaseProtocol {
                 fatalError("Firebase Authentication Failed with Error\(String(describing: error))")
             }
             self!.currentUser = authResult?.user
+            
+            // Get the current user from db
+            let docRef = self?.usersRefs?.document(self?.currentUser?.uid ?? "")
+            docRef?.getDocument{ (document, error) in
+                if let document = document, document.exists {
+                    let dataDescription = document.data()
+                    print("Document data: \(String(describing: dataDescription))")
+                    
+                    self?.signedInUser.uid = dataDescription?["uid"] as? String
+                    self?.signedInUser.username = dataDescription?["username"] as? String
+                } else {
+                    print("Document does not exist")
+                }
+            }
             print("Current user signed in: \(self!.currentUser?.uid ?? "")")
+            self?.setupAllUsersListener()
             self?.setupMyPromptsListener()
+        }
+    }
+    
+    func setupAllUsersListener() {
+        usersRefs?.addSnapshotListener() { (querySnapshot, error) in
+            guard let querySnapshot = querySnapshot else {
+                print("Failed to fetch documents with error: \(String(describing: error))")
+                return
+            }
+            self.parseAllUsersSnapshot(snapshot: querySnapshot)
         }
     }
     
@@ -261,6 +327,20 @@ class FirebaseController: NSObject, DatabaseProtocol {
                 return
             }
             self.parseFriendsSnapShot(snapshot: querySnapshot)
+        }
+        if self.friendRequestRef == nil {
+            self.setupFriendRequestsListener()
+        }
+    }
+    
+    func setupFriendRequestsListener() {
+        friendRequestRef = usersRefs?.document(currentUser?.uid ?? "").collection("friendRequests")
+        friendRequestRef?.addSnapshotListener{ (querySnapshot, error) in
+            guard let querySnapshot = querySnapshot else {
+                print("Failed to fetch documents with error: \(String(describing: error))")
+                return
+            }
+            self.parseFriendRequestsSnapshot(snapshot: querySnapshot)
         }
     }
     
@@ -379,7 +459,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
                 parsedFriend = try change.document.data(as: User.self)
             } catch let error {
                 print("Unable to decode friend. Is the friend malformed?")
-                print(error.localizedDescription)
+                print(error)
                 return
             }
             
@@ -400,6 +480,76 @@ class FirebaseController: NSObject, DatabaseProtocol {
         listeners.invoke { (listener) in
             if listener.listenerType == ListenerType.friends || listener.listenerType == ListenerType.all {
                 listener.onFriendsChange(change: .update, friends: friendList)
+            }
+        }
+    }
+    
+    func parseAllUsersSnapshot(snapshot: QuerySnapshot) {
+        print("Snapshot count: \(snapshot.count)")
+        snapshot.documentChanges.forEach { (change) in
+            var parsedUser: User?
+            
+            do {
+                print(change.document.data())
+                parsedUser = try change.document.data(as: User.self)
+            } catch let error {
+                print("Unable to decode user. Is the user malformed?")
+                print(error)
+                return
+            }
+            
+            guard let user = parsedUser else {
+                print("Document doesn't exist")
+                return;
+            }
+            if change.type == .added {
+                print("Change.newIndex: \(change.newIndex)")
+                allUsersList.insert(user, at: Int(change.newIndex))
+            } else if change.type == .modified {
+                allUsersList[Int(change.oldIndex)] = user
+            } else if change.type == .removed {
+                allUsersList.remove(at: Int(change.oldIndex))
+            }
+        }
+        
+        listeners.invoke { (listener) in
+            if listener.listenerType == ListenerType.allUsers || listener.listenerType == ListenerType.all {
+                listener.onAllUsersChange(change: .update, allUsers: allUsersList)
+            }
+        }
+    }
+    
+    func parseFriendRequestsSnapshot(snapshot: QuerySnapshot) {
+        print("Snapshot count: \(snapshot.count)")
+        snapshot.documentChanges.forEach { (change) in
+            var parsedFriendRequestUser: User?
+            
+            do {
+                print(change.document.data())
+                parsedFriendRequestUser = try change.document.data(as: User.self)
+            } catch let error {
+                print("Unable to decode user. Is the user malformed?")
+                print(error)
+                return
+            }
+            
+            guard let user = parsedFriendRequestUser else {
+                print("Document doesn't exist")
+                return;
+            }
+            if change.type == .added {
+                print("Change.newIndex: \(change.newIndex)")
+                allUsersList.insert(user, at: Int(change.newIndex))
+            } else if change.type == .modified {
+                allUsersList[Int(change.oldIndex)] = user
+            } else if change.type == .removed {
+                allUsersList.remove(at: Int(change.oldIndex))
+            }
+        }
+        
+        listeners.invoke { (listener) in
+            if listener.listenerType == ListenerType.friendRequests || listener.listenerType == ListenerType.all {
+                listener.onFriendRequestsChange(change: .update, friendRequests: friendRequestList)
             }
         }
     }

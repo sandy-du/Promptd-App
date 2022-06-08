@@ -7,21 +7,29 @@
 
 import UIKit
 
-class AddFriendsViewController: UITableViewController, UISearchResultsUpdating {
+class AddFriendsViewController: UITableViewController, UISearchResultsUpdating, DatabaseListener, TableViewCellDelegate {
 
+    
+
+    weak var databaseController: DatabaseProtocol?
     // All the users in the DB
     var allUsers: [User] = []
     // Filtered users from the search
     var filteredUsers: [User] = []
     let CELL_USER = "userCell"
+    var listenerType = ListenerType.allUsers
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        allUsers = [createUser(username: "sam"), createUser(username: "max"), createUser(username: "seb"), createUser(username: "connor"), createUser(username: "conan")]
+        //allUsers = [createUser(username: "sam"), createUser(username: "max"), createUser(username: "seb"), createUser(username: "connor"), createUser(username: "conan")]
         
         // Comment out to not have all users show up intially
         //filteredUsers = allUsers
+        
+        // Set up database controller
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        databaseController = appDelegate?.databaseController
         
         // Set up search controller
         let searchController = UISearchController(searchResultsController: nil)
@@ -51,6 +59,9 @@ class AddFriendsViewController: UITableViewController, UISearchResultsUpdating {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Configure and return a hero cell
         let userCell = tableView.dequeueReusableCell(withIdentifier: CELL_USER, for: indexPath) as! AddFriendTableViewCell
+        // Set cell delegate
+        userCell.cellDelegate = self
+        userCell.addFriendButton.tag = indexPath.row
         let user = filteredUsers[indexPath.row]
         userCell.friendUserLabel.text = user.username
         return userCell
@@ -71,7 +82,50 @@ class AddFriendsViewController: UITableViewController, UISearchResultsUpdating {
         }
         tableView.reloadData()
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        databaseController?.addListener(listener: self)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        databaseController?.removeListener(listener: self)
+    }
+    
+    func onMyPromptsChange(change: DatabaseChange, myPrompts: [Prompt]) {
+        //
+    }
+    
+    func onFavouritePromptsChange(change: DatabaseChange, favouritePrompts: [Prompt]) {
+        //
+    }
+    
+    func onPostedStoriesChange(change: DatabaseChange, postedStories: [Story]) {
+        //
+    }
+    
+    func onFriendsChange(change: DatabaseChange, friends: [User]) {
+        //
+    }
+    
+    func onAllUsersChange(change: DatabaseChange, allUsers: [User]) {
+        self.allUsers = allUsers
+        tableView.reloadData()
+    }
+    
+    func onFriendRequestsChange(change: DatabaseChange, friendRequests: [User]) {
+        //
+    }
+    
+    func didPressButton(_ tag: Int){
+        // Function to pass the addFriendButton the friend added
+        let friendSelected = allUsers[tag]
+        //let _ = databaseController?.addFriendToUser(friend: friendSelected)
+        let _ = databaseController?.addUserToFriendRequest(friend: friendSelected)
+        navigationController?.popViewController(animated: true)
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -84,10 +138,19 @@ class AddFriendsViewController: UITableViewController, UISearchResultsUpdating {
 
 }
 
+// Reference: https://stackoverflow.com/questions/39947076/uitableviewcell-buttons-with-action/39947434#39947434
+protocol TableViewCellDelegate: AnyObject {
+    func didPressButton(_ tag: Int)
+}
+
 class AddFriendTableViewCell: UITableViewCell {
+    
+    var cellDelegate: TableViewCellDelegate?
     @IBOutlet weak var friendUserLabel: UILabel!
-    @IBAction func addFriend(_ sender: Any){
+    @IBOutlet weak var addFriendButton: UIButton!
+    @IBAction func addFriend(_ sender: UIButton){
         // Add friend to friend list of user
+        cellDelegate?.didPressButton(sender.tag)
     }
     
 }

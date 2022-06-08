@@ -83,6 +83,13 @@ class MyPromptsTableViewController: UITableViewController, DatabaseListener {
         //
     }
     
+    func onAllUsersChange(change: DatabaseChange, allUsers: [User]) {
+        //
+    }
+    
+    func onFriendRequestsChange(change: DatabaseChange, friendRequests: [User]) {
+        //
+    }
     
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

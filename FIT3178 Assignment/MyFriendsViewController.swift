@@ -69,6 +69,17 @@ class MyFriendsViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.reloadData()
     }
     
+    
+    func onAllUsersChange(change: DatabaseChange, allUsers: [User]) {
+        //
+    }
+    
+    func onFriendRequestsChange(change: DatabaseChange, friendRequests: [User]) {
+        //
+    }
+    @IBAction func toFriendRequests(_ sender: Any) {
+        performSegue(withIdentifier: "showFriendRequestsSegue", sender: nil)
+    }
     /*
     // MARK: - Navigation
 

@@ -45,7 +45,12 @@ class SignupViewController: UIViewController {
             return
         }
         
-        databaseController?.createNewAccount(email: email, password: password)
+        guard let username = usernameTextField.text else {
+            displayMessage(title: "Enter Username", message: "Please enter a username")
+            return
+        }
+        
+        databaseController?.createNewAccount(email: email, password: password, username: username)
         
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

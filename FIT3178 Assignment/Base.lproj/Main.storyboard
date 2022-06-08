@@ -338,6 +338,9 @@
                                 <rect key="frame" x="20" y="108" width="374" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Friend Requests"/>
+                                <connections>
+                                    <action selector="toFriendRequests:" destination="xwN-Qx-BhZ" eventType="touchUpInside" id="PJw-Pb-zYp"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="R0B-kJ-Tml">
                                 <rect key="frame" x="0.0" y="159" width="414" height="654"/>
@@ -389,6 +392,7 @@
                     <connections>
                         <outlet property="tableView" destination="R0B-kJ-Tml" id="lse-pS-K4Z"/>
                         <segue destination="3nu-D9-0lX" kind="show" identifier="addFriendsSegue" id="mKx-EB-wvV"/>
+                        <segue destination="4sg-G8-yVc" kind="show" identifier="showFriendRequestsSegue" id="Enz-af-oIq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="znv-fY-ce0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -434,6 +438,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="addFriendButton" destination="Wb0-2W-9TQ" id="Hcx-Tt-1oF"/>
                                     <outlet property="friendUserLabel" destination="cRB-Mo-gAd" id="DFM-M6-c0x"/>
                                 </connections>
                             </tableViewCell>
@@ -447,7 +452,73 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wJ0-ay-IEe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2786" y="1043"/>
+            <point key="canvasLocation" x="-3165" y="1041"/>
+        </scene>
+        <!--Friend Request Table View Controller-->
+        <scene sceneID="UBA-lC-afr">
+            <objects>
+                <tableViewController id="4sg-G8-yVc" customClass="FriendRequestTableViewController" customModule="FIT3178_Assignment" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="oXM-Iq-5zV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="friendRequestCell" rowHeight="55" id="6m1-os-IYc" customClass="FriendRequestTableViewCell" customModule="FIT3178_Assignment" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="55"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6m1-os-IYc" id="jQJ-dc-X3i">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qfy-lX-fcw">
+                                            <rect key="frame" x="28" y="17" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AzN-tK-1rx">
+                                            <rect key="frame" x="333" y="12" width="73" height="31"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="tinted" title="Decline"/>
+                                            <connections>
+                                                <action selector="declineFriend:" destination="6m1-os-IYc" eventType="touchUpInside" id="QJG-Mq-jro"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gOj-Ig-VSX">
+                                            <rect key="frame" x="253" y="12" width="70" height="31"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="filled" title="Accept"/>
+                                            <connections>
+                                                <action selector="acceptFriend:" destination="6m1-os-IYc" eventType="touchUpInside" id="kH1-zV-nHi"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="gOj-Ig-VSX" firstAttribute="centerY" secondItem="jQJ-dc-X3i" secondAttribute="centerY" id="06Q-Az-HhK"/>
+                                        <constraint firstAttribute="trailing" secondItem="AzN-tK-1rx" secondAttribute="trailing" constant="8" id="AZB-UR-2Ff"/>
+                                        <constraint firstItem="AzN-tK-1rx" firstAttribute="centerY" secondItem="jQJ-dc-X3i" secondAttribute="centerY" id="Al7-hb-Gik"/>
+                                        <constraint firstItem="Qfy-lX-fcw" firstAttribute="leading" secondItem="jQJ-dc-X3i" secondAttribute="leadingMargin" constant="8" id="E4T-9N-yzU"/>
+                                        <constraint firstItem="AzN-tK-1rx" firstAttribute="leading" secondItem="gOj-Ig-VSX" secondAttribute="trailing" constant="10" id="X7z-yy-UZr"/>
+                                        <constraint firstItem="Qfy-lX-fcw" firstAttribute="centerY" secondItem="jQJ-dc-X3i" secondAttribute="centerY" id="psu-HZ-DNL"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="acceptButton" destination="gOj-Ig-VSX" id="3ti-7n-itp"/>
+                                    <outlet property="declineButton" destination="AzN-tK-1rx" id="ZLW-2R-A97"/>
+                                    <outlet property="friendRequestLabel" destination="Qfy-lX-fcw" id="gDh-pH-jVa"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="4sg-G8-yVc" id="STD-Zn-Yn3"/>
+                            <outlet property="delegate" destination="4sg-G8-yVc" id="Q3K-z8-PER"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Kzd-iO-CTc"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bmk-l2-qCx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2262.3188405797105" y="1076.7857142857142"/>
         </scene>
         <!--Profile-->
         <scene sceneID="KHW-D6-Ouc">

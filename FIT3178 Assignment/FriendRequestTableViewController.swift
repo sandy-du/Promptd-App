@@ -1,19 +1,18 @@
 //
-//  FavouritePromptsTableViewController.swift
+//  FriendRequestTableViewController.swift
 //  FIT3178 Assignment
 //
-//  Created by Sandy Du on 10/5/2022.
+//  Created by Sandy Du on 8/6/2022.
 //
 
 import UIKit
 
-class FavouritePromptsTableViewController: UITableViewController, DatabaseListener {
+class FriendRequestTableViewController: UITableViewController, DatabaseListener, FriendRequestTableViewCellDelegate {
     
     weak var databaseController: DatabaseProtocol?
-    var allFavouritePrompts: [Prompt] = []
-    var listenerType = ListenerType.favouritePrompts
-    let CELL_FAVPROMPT = "favouritePromptCell"
-    var currentPrompt: Prompt?
+    var listenerType = ListenerType.friendRequests
+    var allFriendRequests: [User] = []
+    let CELL_FRIENDREQUEST = "friendRequestCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,24 +32,20 @@ class FavouritePromptsTableViewController: UITableViewController, DatabaseListen
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return allFavouritePrompts.count
+        return allFriendRequests.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // Configure and return a favouritePrompt cell
-        let favPromptCell = tableView.dequeueReusableCell(withIdentifier: CELL_FAVPROMPT, for: indexPath)
-        var content = favPromptCell.defaultContentConfiguration()
-        let favPrompt = allFavouritePrompts[indexPath.row]
-        content.text = favPrompt.text
-        favPromptCell.contentConfiguration = content
-        return favPromptCell
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        currentPrompt = allFavouritePrompts[indexPath.row]
-        performSegue(withIdentifier: "showFavouritedWritingScreenSegue", sender: nil)
-        tableView.deselectRow(at: indexPath, animated: true)
+        // Configure and return a hero cell
+        let friendRequestCell = tableView.dequeueReusableCell(withIdentifier: CELL_FRIENDREQUEST, for: indexPath) as! FriendRequestTableViewCell
+        // Set cell delegate
+        friendRequestCell.cellDelegate = self
+        friendRequestCell.acceptButton.tag = indexPath.row
+        friendRequestCell.declineButton.tag = indexPath.row
+        let user = allFriendRequests[indexPath.row]
+        friendRequestCell.friendRequestLabel.text = user.username
+        return friendRequestCell
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,16 +57,15 @@ class FavouritePromptsTableViewController: UITableViewController, DatabaseListen
         super.viewWillDisappear(animated)
         databaseController?.removeListener(listener: self)
     }
-    
+
     func onMyPromptsChange(change: DatabaseChange, myPrompts: [Prompt]) {
         //
     }
     
     func onFavouritePromptsChange(change: DatabaseChange, favouritePrompts: [Prompt]) {
-        allFavouritePrompts = favouritePrompts
-        tableView.reloadData()
+        //
     }
-
+    
     func onPostedStoriesChange(change: DatabaseChange, postedStories: [Story]) {
         //
     }
@@ -80,15 +74,26 @@ class FavouritePromptsTableViewController: UITableViewController, DatabaseListen
         //
     }
     
+    func onFriendRequestsChange(change: DatabaseChange, friendRequests: [User]) {
+        allFriendRequests = friendRequests
+        tableView.reloadData()
+    }
     
     func onAllUsersChange(change: DatabaseChange, allUsers: [User]) {
         //
     }
     
-    func onFriendRequestsChange(change: DatabaseChange, friendRequests: [User]) {
-        //
+    func didPressAcceptButton(_ tag: Int) {
+        let user = allFriendRequests[tag]
+        let _ = databaseController?.addFriendToUser(friend: user)
+        navigationController?.popViewController(animated: true)
     }
     
+    func didPressDeclineButton(_ tag: Int) {
+        let user = allFriendRequests[tag]
+        let _ = databaseController?.deleteUserFromFriendRequest(friend: user)
+        navigationController?.popViewController(animated: true)
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -124,14 +129,37 @@ class FavouritePromptsTableViewController: UITableViewController, DatabaseListen
     }
     */
 
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showFavouritedWritingScreenSegue" {
-            let destination = segue.destination as! WritingScreenViewController
-            destination.currentPrompt = currentPrompt
-        }
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
+
+// Reference: https://stackoverflow.com/questions/39947076/uitableviewcell-buttons-with-action/39947434#39947434
+protocol FriendRequestTableViewCellDelegate: AnyObject {
+    func didPressAcceptButton(_ tag: Int)
+    func didPressDeclineButton(_ tag: Int)
+}
+
+class FriendRequestTableViewCell: UITableViewCell {
+    @IBOutlet weak var friendRequestLabel: UILabel!
+    @IBOutlet weak var acceptButton: UIButton!
+    @IBOutlet weak var declineButton: UIButton!
+    var cellDelegate: FriendRequestTableViewCellDelegate?
+    
+    
+    @IBAction func acceptFriend(_ sender: UIButton) {
+        cellDelegate?.didPressAcceptButton(sender.tag)
+    }
+    
+    @IBAction func declineFriend(_ sender: UIButton) {
+        cellDelegate?.didPressDeclineButton(sender.tag)
     }
 
 }

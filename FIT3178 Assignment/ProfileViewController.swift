@@ -67,6 +67,13 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         //
     }
     
+    func onAllUsersChange(change: DatabaseChange, allUsers: [User]) {
+        //
+    }
+    
+    func onFriendRequestsChange(change: DatabaseChange, friendRequests: [User]) {
+        //
+    }
 
     /*
     // MARK: - Navigation
