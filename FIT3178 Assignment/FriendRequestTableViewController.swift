@@ -31,7 +31,6 @@ class FriendRequestTableViewController: UITableViewController, DatabaseListener,
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return allFriendRequests.count
     }
 
@@ -86,6 +85,8 @@ class FriendRequestTableViewController: UITableViewController, DatabaseListener,
     func didPressAcceptButton(_ tag: Int) {
         let user = allFriendRequests[tag]
         let _ = databaseController?.addFriendToUser(friend: user)
+        let _ = databaseController?.addUserToFriend(friend: user)
+        let _ = databaseController?.deleteUserFromFriendRequest(friend: user)
         navigationController?.popViewController(animated: true)
     }
     

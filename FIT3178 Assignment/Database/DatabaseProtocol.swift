@@ -53,7 +53,10 @@ protocol DatabaseProtocol: AnyObject {
     
     func addFriendToUser(friend: User) -> User
     func deleteFriendFromUser(user: User)
+    func addUserToFriend(friend: User) -> User
     
     func addUserToFriendRequest(friend: User) -> User
     func deleteUserFromFriendRequest(friend: User)
+    
+    func getCurrentUser() -> User
 }

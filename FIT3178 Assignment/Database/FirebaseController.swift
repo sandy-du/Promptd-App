@@ -173,12 +173,12 @@ class FirebaseController: NSObject, DatabaseProtocol {
         //friend.username = username
         usersRefs = database.collection("users")
         let friendListRef = usersRefs?.document(currentUser?.uid ?? "").collection("friends")
-        do {
-            if let friendRef = try friendListRef?.addDocument(from: friend){
-                friend.id = friendRef.documentID
+        let _ = friendListRef?.document(friend.uid ?? "").setData(["uid": friend.uid ?? "", "username": friend.username ?? ""]) {err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
             }
-        } catch {
-            print("Failed to serialize friends")
         }
         return friend
     }
@@ -190,6 +190,20 @@ class FirebaseController: NSObject, DatabaseProtocol {
             friendListRef?.document(friendID).delete()
         }
     }
+    
+    func addUserToFriend(friend: User) -> User {
+        usersRefs = database.collection("users")
+        let friendListRef = usersRefs?.document(friend.uid ?? "").collection("friends")
+        let _ = friendListRef?.document(signedInUser.uid ?? "").setData(["uid": signedInUser.uid ?? "", "username": signedInUser.username ?? ""]) {err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+        return friend
+    }
+    
     
     // Add current user to friend's request list
     func addUserToFriendRequest(friend: User) -> User {
@@ -214,7 +228,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
     func deleteUserFromFriendRequest(friend: User) {
         usersRefs = database.collection("users")
         let userFriendRequestRef = usersRefs?.document(currentUser?.uid ?? "").collection("friendRequests")
-        if let friendID = friend.id {
+        if let friendID = friend.uid {
             userFriendRequestRef?.document(friendID).delete()
         }
     }
@@ -265,6 +279,10 @@ class FirebaseController: NSObject, DatabaseProtocol {
             self?.setupAllUsersListener()
             self?.setupMyPromptsListener()
         }
+    }
+    
+    func getCurrentUser() -> User {
+        return self.signedInUser
     }
     
     func setupAllUsersListener() {
@@ -520,12 +538,12 @@ class FirebaseController: NSObject, DatabaseProtocol {
     }
     
     func parseFriendRequestsSnapshot(snapshot: QuerySnapshot) {
-        print("Snapshot count: \(snapshot.count)")
+        print("Snapshot Friend Requests count: \(snapshot.count)")
         snapshot.documentChanges.forEach { (change) in
             var parsedFriendRequestUser: User?
             
             do {
-                print(change.document.data())
+                print("Friend request: \(change.document.data())")
                 parsedFriendRequestUser = try change.document.data(as: User.self)
             } catch let error {
                 print("Unable to decode user. Is the user malformed?")
@@ -539,11 +557,11 @@ class FirebaseController: NSObject, DatabaseProtocol {
             }
             if change.type == .added {
                 print("Change.newIndex: \(change.newIndex)")
-                allUsersList.insert(user, at: Int(change.newIndex))
+                friendRequestList.insert(user, at: Int(change.newIndex))
             } else if change.type == .modified {
-                allUsersList[Int(change.oldIndex)] = user
+                friendRequestList[Int(change.oldIndex)] = user
             } else if change.type == .removed {
-                allUsersList.remove(at: Int(change.oldIndex))
+                friendRequestList.remove(at: Int(change.oldIndex))
             }
         }
         

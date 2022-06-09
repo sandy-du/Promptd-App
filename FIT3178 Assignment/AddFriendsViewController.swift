@@ -74,7 +74,7 @@ class AddFriendsViewController: UITableViewController, UISearchResultsUpdating, 
         
         if searchText.count > 0 {
             filteredUsers = allUsers.filter({ (user: User) -> Bool in
-                return (user.username?.lowercased().contains(searchText) ?? false)
+                return (user.username?.lowercased().contains(searchText) ?? false && (user.uid != databaseController?.getCurrentUser().uid))
             })
         } else {
             // Comment out to not have all users show up intially
@@ -120,8 +120,9 @@ class AddFriendsViewController: UITableViewController, UISearchResultsUpdating, 
     
     func didPressButton(_ tag: Int){
         // Function to pass the addFriendButton the friend added
-        let friendSelected = allUsers[tag]
+        let friendSelected = filteredUsers[tag]
         //let _ = databaseController?.addFriendToUser(friend: friendSelected)
+        print("Friend selected to send request to: \(friendSelected.username)")
         let _ = databaseController?.addUserToFriendRequest(friend: friendSelected)
         navigationController?.popViewController(animated: true)
     }
