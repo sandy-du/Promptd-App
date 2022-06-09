@@ -51,11 +51,12 @@ class SignupViewController: UIViewController {
         }
         
         databaseController?.createNewAccount(email: email, password: password, username: username)
-        
-        
+        performSegue(withIdentifier: "signupToNotifsSegue", sender: nil)
+        /*
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let homeScreen = storyboard.instantiateViewController(withIdentifier: "homeScreen") as! HomeTabBarController
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.setRootViewController(homeScreen)
+         */
     }
     
     func isValidEmail(email: String) -> Bool{

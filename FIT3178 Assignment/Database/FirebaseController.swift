@@ -180,6 +180,21 @@ class FirebaseController: NSObject, DatabaseProtocol {
                 print("Document successfully written!")
             }
         }
+        
+        /*
+        // Add all friend's posted story to user's friendsPostedStories
+        let friendPostedStoriesRef = usersRefs?.document(friend.uid ?? "").collection("postedStories")
+        friendPostedStoriesRef?.addSnapshotListener{ (querySnapshot, error) in
+            guard let querySnapshot = querySnapshot else {
+                print("Failed to fetch documents with error: \(String(describing: error))")
+                return
+            }
+            //self.parsePostedStoriesSnapShot(snapshot: querySnapshot)
+            querySnapshot.documents.forEach({
+                
+            })
+        }*/
+        
         return friend
     }
     
@@ -201,6 +216,19 @@ class FirebaseController: NSObject, DatabaseProtocol {
                 print("Document successfully written!")
             }
         }
+        
+        /*
+        let friendPostedStories
+        // When you add friend to user, also add their posted stories to friendsPostedStories
+        postedStoriesRef = usersRefs?.document(friend?.uid ?? "").collection("postedStories")
+        postedStoriesRef?.addSnapshotListener{ (querySnapshot, error) in
+            guard let querySnapshot = querySnapshot else {
+                print("Failed to fetch documents with error: \(String(describing: error))")
+                return
+            }
+            self.parsePostedStoriesSnapShot(snapshot: querySnapshot)
+        }*/
+        
         return friend
     }
     

@@ -75,6 +75,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         //
     }
 
+    @IBAction func toSettings(_ sender: Any) {
+        performSegue(withIdentifier: "toSettingsSegue", sender: nil)
+    }
     /*
     // MARK: - Navigation
 

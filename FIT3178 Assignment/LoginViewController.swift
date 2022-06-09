@@ -44,9 +44,12 @@ class LoginViewController: UIViewController {
         }
         
         databaseController?.signInWithAccount(email: email, password: password)
+        performSegue(withIdentifier: "loginToNotifsSegue", sender: nil)
+        /*
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let homeScreen = storyboard.instantiateViewController(withIdentifier: "homeScreen") as! HomeTabBarController
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.setRootViewController(homeScreen)
+         */
     }
     
     
