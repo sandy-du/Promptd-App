@@ -11,7 +11,6 @@ class FriendProfileViewController: UIViewController, UICollectionViewDelegate, U
     
     var listenerType = ListenerType.friendPostedStories
     weak var databaseController: DatabaseProtocol?
-    //var listenerType = ListenerType.postedStories
     let CELL_POSTED = "friendPostedCell"
     var allFriendPostedStories: [Story] = []
     var friendStories: [Story] = []
@@ -88,16 +87,6 @@ class FriendProfileViewController: UIViewController, UICollectionViewDelegate, U
         allFriendPostedStories = friendPostedStories
         collectionView.reloadData()
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 class FriendPostedCell: UICollectionViewCell {

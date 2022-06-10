@@ -22,16 +22,6 @@ class LoginViewController: UIViewController {
         databaseController = appDelegate?.databaseController
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     @IBAction func login(_ sender: Any) {
         
         guard let email = emailTextField.text, isValidEmail(email: email) else {
@@ -45,14 +35,9 @@ class LoginViewController: UIViewController {
         
         databaseController?.signInWithAccount(email: email, password: password)
         performSegue(withIdentifier: "loginToNotifsSegue", sender: nil)
-        /*
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let homeScreen = storyboard.instantiateViewController(withIdentifier: "homeScreen") as! HomeTabBarController
-        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.setRootViewController(homeScreen)
-         */
     }
     
-    
+    // Reference: https://stackoverflow.com/questions/25471114/how-to-validate-an-e-mail-address-in-swift by Maxim Shoustin
     func isValidEmail(email: String) -> Bool{
         let emailRegEx = "[A-Z0-9a-z._]+@[A-Za-z0-9]+.[A-Za-z]{2,64}"
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)

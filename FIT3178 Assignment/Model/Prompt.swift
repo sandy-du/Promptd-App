@@ -2,6 +2,8 @@
 //  Prompt.swift
 //  FIT3178 Assignment
 //
+//  Prompt is the object of the various prompts constructed from images and text.
+//
 //  Created by Sandy Du on 5/6/2022.
 //
 

@@ -22,11 +22,6 @@ class AddFriendsViewController: UITableViewController, UISearchResultsUpdating, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //allUsers = [createUser(username: "sam"), createUser(username: "max"), createUser(username: "seb"), createUser(username: "connor"), createUser(username: "conan")]
-        
-        // Comment out to not have all users show up intially
-        //filteredUsers = allUsers
-        
         // Set up database controller
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         databaseController = appDelegate?.databaseController
@@ -40,12 +35,6 @@ class AddFriendsViewController: UITableViewController, UISearchResultsUpdating, 
         navigationItem.searchController = searchController
         // This view controller decides how the search controller is presented
         definesPresentationContext = true
-    }
-    
-    func createUser(username: String) -> User {
-        let user = User()
-        user.username = username
-        return user
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -76,9 +65,6 @@ class AddFriendsViewController: UITableViewController, UISearchResultsUpdating, 
             filteredUsers = allUsers.filter({ (user: User) -> Bool in
                 return (user.username?.lowercased().contains(searchText) ?? false && (user.uid != databaseController?.getCurrentUser().uid))
             })
-        } else {
-            // Comment out to not have all users show up intially
-            //filteredUsers = allUsers
         }
         tableView.reloadData()
     }
@@ -130,16 +116,6 @@ class AddFriendsViewController: UITableViewController, UISearchResultsUpdating, 
         navigationController?.popViewController(animated: true)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 // Reference: https://stackoverflow.com/questions/39947076/uitableviewcell-buttons-with-action/39947434#39947434

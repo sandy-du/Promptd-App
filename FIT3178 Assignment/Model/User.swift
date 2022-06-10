@@ -2,6 +2,8 @@
 //  User.swift
 //  FIT3178 Assignment
 //
+//  User is anyone who uses the application. This maps users that some personal fields from stored in Firestore.
+//
 //  Created by Sandy Du on 18/5/2022.
 //
 

@@ -48,18 +48,6 @@ class FirebaseController: NSObject, DatabaseProtocol {
         friendPostedStoriesList = [Story]()
         super.init()
         
-        /*
-        Task {
-            do {
-                let authDataResult = try await authController.signInAnonymously()
-                currentUser = authDataResult.user
-            }
-            catch {
-                fatalError("Firebase Authentication Failed with Error\(String(describing: error))")
-            }
-            self.setupMyPromptsListener()
-        }*/
-
     }
     
     func cleanup() {
@@ -106,6 +94,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
     }
     
     
+    // Add my prompt the user
     func addMyPrompt(text: String) -> Prompt {
         let myPrompt = Prompt()
         myPrompt.text = text
@@ -126,6 +115,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
         }
     }
     
+    // When prompt is favourited, add to user
     func addFavouritePrompt(imageURL: String, text: String) -> Prompt {
         let favouritePrompt = Prompt()
         favouritePrompt.imageURL = imageURL
@@ -146,6 +136,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
         }
     } 
     
+    // When user wants to post a story, add it to the db
     func addStoryToUser(prompt: Prompt, text: String) -> Story {
         let story = Story()
         story.text = text
@@ -173,10 +164,8 @@ class FirebaseController: NSObject, DatabaseProtocol {
         }
     }
     
+    // When acecpting a friend request, add friend to current user's friend list
     func addFriendToUser(friend: User) -> User {
-        //let friend = User()
-        //friend.uid = uid
-        //friend.username = username
         usersRefs = database.collection("users")
         let friendListRef = usersRefs?.document(currentUser?.uid ?? "").collection("friends")
         let _ = friendListRef?.document(friend.uid ?? "").setData(["uid": friend.uid ?? "", "username": friend.username ?? ""]) {err in
@@ -186,24 +175,10 @@ class FirebaseController: NSObject, DatabaseProtocol {
                 print("Document successfully written!")
             }
         }
-        
-        /*
-        // Add all friend's posted story to user's friendsPostedStories
-        let friendPostedStoriesRef = usersRefs?.document(friend.uid ?? "").collection("postedStories")
-        friendPostedStoriesRef?.addSnapshotListener{ (querySnapshot, error) in
-            guard let querySnapshot = querySnapshot else {
-                print("Failed to fetch documents with error: \(String(describing: error))")
-                return
-            }
-            //self.parsePostedStoriesSnapShot(snapshot: querySnapshot)
-            querySnapshot.documents.forEach({
-                
-            })
-        }*/
-        
         return friend
     }
     
+    // Remove friend from current user's friend list
     func deleteFriendFromUser(user: User) {
         usersRefs = database.collection("users")
         let friendListRef = usersRefs?.document(currentUser?.uid ?? "").collection("friends")
@@ -212,6 +187,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
         }
     }
     
+    // When accepting a friend request, also add current user to friend's friend list
     func addUserToFriend(friend: User) -> User {
         usersRefs = database.collection("users")
         let friendListRef = usersRefs?.document(friend.uid ?? "").collection("friends")
@@ -222,19 +198,6 @@ class FirebaseController: NSObject, DatabaseProtocol {
                 print("Document successfully written!")
             }
         }
-        
-        /*
-        let friendPostedStories
-        // When you add friend to user, also add their posted stories to friendsPostedStories
-        postedStoriesRef = usersRefs?.document(friend?.uid ?? "").collection("postedStories")
-        postedStoriesRef?.addSnapshotListener{ (querySnapshot, error) in
-            guard let querySnapshot = querySnapshot else {
-                print("Failed to fetch documents with error: \(String(describing: error))")
-                return
-            }
-            self.parsePostedStoriesSnapShot(snapshot: querySnapshot)
-        }*/
-        
         return friend
     }
     

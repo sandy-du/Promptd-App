@@ -2,6 +2,8 @@
 //  Story.swift
 //  FIT3178 Assignment
 //
+//  Story is the object of the posted stories written by users
+//
 //  Created by Sandy Du on 4/5/2022.
 //
 

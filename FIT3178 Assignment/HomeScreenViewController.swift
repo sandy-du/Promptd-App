@@ -39,11 +39,7 @@ class HomeScreenViewController: UIViewController {
         promptView.layer.shadowRadius = 4
         
         promptView.layer.backgroundColor = UIColor.white.cgColor
-        //promptView.layer.shadowPath = UIBezierPath(roundedRect: promptView.bounds, cornerRadius: 10).cgPath
-        //promptView.layer.shouldRasterize = true
-        //promptView.layer.rasterizationScale = UIScreen.main.scale
-        
-        //promptLabel.textColor = .gray
+
         // Setting up favourite button
         let starImage = UIImage(systemName: "star")
         favouriteButton.setImage(starImage, for: .normal)
@@ -78,6 +74,7 @@ class HomeScreenViewController: UIViewController {
         
     }
     
+    // Request a url from Unsplash for a random landscape image
     func requestRandomImageURL() async {
         // Create URL for the API request
         guard let requestURL = URL(string: REQUEST_STRING) else {
@@ -101,6 +98,7 @@ class HomeScreenViewController: UIViewController {
         }
     }
     
+    // Retrieve image from Unsplash given a URL
     func getImage() {
         if let imageURL = imagePromptURL {
             let requestURL = URL(string: imageURL)
@@ -125,24 +123,21 @@ class HomeScreenViewController: UIViewController {
         }
     }
     
+    // Retrieve a random prompt from randomwordgenerator.org/random-sentence-generator
     func getRandomPrompt() {
         guard let writtenPromptURL = URL(string: "https://www.randomwordgenerator.org/random-sentence-generator") else {
             print("INVALID URL!")
             return
         }
-        
         guard let html = try? String(contentsOf: writtenPromptURL) else {
             print("No HTML FOUND!")
             return
         }
-        
         guard let document = try? SwiftSoup.parse(html) else {
             print("No document parsed!")
             return
         }
-        
         do {
-            
             if let sentence = try? document.select(".result").first()?.text() {
                 promptLabel.text = sentence
             }
@@ -178,9 +173,6 @@ class HomeScreenViewController: UIViewController {
             destination.currentPrompt = currentPrompt
         }
     }
-    
-   
-
 }
 
 enum ImageError: Error {

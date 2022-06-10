@@ -2,6 +2,8 @@
 //  VisualPromptData.swift
 //  FIT3178 Assignment
 //
+//  This decodes images from Splash into mapped object.
+//
 //  Created by Sandy Du on 23/4/2022.
 //
 

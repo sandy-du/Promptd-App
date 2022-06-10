@@ -3,8 +3,8 @@
 //  FIT3178 Assignment
 //
 //  Created by Sandy Du on 10/6/2022.
-//  Reference: https://www.youtube.com/watch?v=qDbbdvTYpVI&ab_channel=CodeWithCal
-//https://www.hackingwithswift.com/read/21/2/scheduling-notifications-unusernotificationcenter-and-unnotificationrequest
+//  References: https://www.youtube.com/watch?v=qDbbdvTYpVI&ab_channel=CodeWithCal
+//  https://www.hackingwithswift.com/read/21/2/scheduling-notifications-unusernotificationcenter-and-unnotificationrequest
 //
 
 import UIKit
@@ -53,9 +53,6 @@ class NotificationsViewController: UIViewController {
                         }
                         
                     }
-                    //let ac = UIAlertController(title: "Notification Scheduled", message: "At \(self.formatTime(time: time))", preferredStyle: .alert)
-                    //ac.addAction(UIAlertAction(title: "OK", style: .default, handler: {(_) in}))
-                    //self.present(ac, animated: true)
                     self.goToHomePage()
                 } else {
                     let ac = UIAlertController(title: "Notifications not enabled", message: "Please enable notifications in settings to set reminders", preferredStyle: .alert)
@@ -91,14 +88,4 @@ class NotificationsViewController: UIViewController {
         let homeScreen = storyboard.instantiateViewController(withIdentifier: "homeScreen") as! HomeTabBarController
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.setRootViewController(homeScreen)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

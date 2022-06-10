@@ -21,7 +21,6 @@
 		256CA0AC28223B8D00B1B847 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256CA0AB28223B8D00B1B847 /* Story.swift */; };
 		2571AB6C284C84760051B1C1 /* Prompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2571AB6B284C84760051B1C1 /* Prompt.swift */; };
 		2571AB6E284E43920051B1C1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2571AB6D284E43910051B1C1 /* ProfileViewController.swift */; };
-		2571AB70284E68050051B1C1 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2571AB6F284E68050051B1C1 /* CommunityViewController.swift */; };
 		2571AB72284F8C310051B1C1 /* MyFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2571AB71284F8C310051B1C1 /* MyFriendsViewController.swift */; };
 		2571AB74284F8C570051B1C1 /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2571AB73284F8C570051B1C1 /* AddFriendsViewController.swift */; };
 		257B85642834005700C074F2 /* WelcomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257B85632834005700C074F2 /* WelcomeScreenViewController.swift */; };
@@ -47,7 +46,7 @@
 		25D1B6A32816DBB900366282 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 25D1B6A22816DBB900366282 /* SwiftSoup */; };
 		25D522A928111A8800FBA299 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D522A828111A8800FBA299 /* HomeScreenViewController.swift */; };
 		25D522AD2813D17900FBA299 /* VisualPromptData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D522AC2813D17900FBA299 /* VisualPromptData.swift */; };
-		25D522AF2813D1FE00FBA299 /* WrittenPromptData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D522AE2813D1FE00FBA299 /* WrittenPromptData.swift */; };
+		25FA579E28537750001E30A5 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FA579D28537750001E30A5 /* AboutViewController.swift */; };
 		25FDA51C282A8C04000FD526 /* FavouritePromptsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FDA51B282A8C04000FD526 /* FavouritePromptsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,7 +62,6 @@
 		256CA0AB28223B8D00B1B847 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		2571AB6B284C84760051B1C1 /* Prompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prompt.swift; sourceTree = "<group>"; };
 		2571AB6D284E43910051B1C1 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		2571AB6F284E68050051B1C1 /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		2571AB71284F8C310051B1C1 /* MyFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsViewController.swift; sourceTree = "<group>"; };
 		2571AB73284F8C570051B1C1 /* AddFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendsViewController.swift; sourceTree = "<group>"; };
 		257B85632834005700C074F2 /* WelcomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenViewController.swift; sourceTree = "<group>"; };
@@ -90,7 +88,7 @@
 		25B43B90283DEB1600AE781A /* DraftsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftsTableViewController.swift; sourceTree = "<group>"; };
 		25D522A828111A8800FBA299 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		25D522AC2813D17900FBA299 /* VisualPromptData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualPromptData.swift; sourceTree = "<group>"; };
-		25D522AE2813D1FE00FBA299 /* WrittenPromptData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrittenPromptData.swift; sourceTree = "<group>"; };
+		25FA579D28537750001E30A5 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		25FDA51B282A8C04000FD526 /* FavouritePromptsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePromptsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,7 +157,6 @@
 				258F090528069CCD00B3EA22 /* Info.plist */,
 				251D15D028190DAF00F41785 /* GoogleService-Info.plist */,
 				2571AB6D284E43910051B1C1 /* ProfileViewController.swift */,
-				2571AB6F284E68050051B1C1 /* CommunityViewController.swift */,
 				2571AB71284F8C310051B1C1 /* MyFriendsViewController.swift */,
 				2571AB73284F8C570051B1C1 /* AddFriendsViewController.swift */,
 				256AA22C2850CE1700E90288 /* FriendRequestTableViewController.swift */,
@@ -167,6 +164,7 @@
 				256AA23228526F8600E90288 /* SettingsTableViewController.swift */,
 				256AA23428530D6600E90288 /* ReadingScreenViewController.swift */,
 				256AA23628532D5A00E90288 /* FriendProfileViewController.swift */,
+				25FA579D28537750001E30A5 /* AboutViewController.swift */,
 			);
 			path = "FIT3178 Assignment";
 			sourceTree = "<group>";
@@ -187,7 +185,6 @@
 			isa = PBXGroup;
 			children = (
 				25D522AC2813D17900FBA299 /* VisualPromptData.swift */,
-				25D522AE2813D1FE00FBA299 /* WrittenPromptData.swift */,
 				256CA0AB28223B8D00B1B847 /* Story.swift */,
 				257B856D2834AC0000C074F2 /* User.swift */,
 				2571AB6B284C84760051B1C1 /* Prompt.swift */,
@@ -280,6 +277,7 @@
 				25B43B89283DE33B00AE781A /* CoreDataProtocol.swift in Sources */,
 				256AA22D2850CE1700E90288 /* FriendRequestTableViewController.swift in Sources */,
 				256AA23728532D5B00E90288 /* FriendProfileViewController.swift in Sources */,
+				25FA579E28537750001E30A5 /* AboutViewController.swift in Sources */,
 				257B85682834007C00C074F2 /* SignupViewController.swift in Sources */,
 				256AA22F2852652200E90288 /* NotificationsViewController.swift in Sources */,
 				25FDA51C282A8C04000FD526 /* FavouritePromptsTableViewController.swift in Sources */,
@@ -291,7 +289,6 @@
 				25B43B8B283DE35E00AE781A /* CoreDataController.swift in Sources */,
 				257B85642834005700C074F2 /* WelcomeScreenViewController.swift in Sources */,
 				2571AB6E284E43920051B1C1 /* ProfileViewController.swift in Sources */,
-				2571AB70284E68050051B1C1 /* CommunityViewController.swift in Sources */,
 				2581A50A2822692600B4CDAA /* MyPromptsTableViewController.swift in Sources */,
 				257B856C2834ABBB00C074F2 /* WritingScreenViewController.swift in Sources */,
 				25D522AD2813D17900FBA299 /* VisualPromptData.swift in Sources */,
@@ -307,7 +304,6 @@
 				25D522A928111A8800FBA299 /* HomeScreenViewController.swift in Sources */,
 				2571AB74284F8C570051B1C1 /* AddFriendsViewController.swift in Sources */,
 				256AA23328526F8600E90288 /* SettingsTableViewController.swift in Sources */,
-				25D522AF2813D1FE00FBA299 /* WrittenPromptData.swift in Sources */,
 				256CA0A428221B9C00B1B847 /* DatabaseProtocol.swift in Sources */,
 				256AA23528530D6600E90288 /* ReadingScreenViewController.swift in Sources */,
 				257B856E2834AC0000C074F2 /* User.swift in Sources */,

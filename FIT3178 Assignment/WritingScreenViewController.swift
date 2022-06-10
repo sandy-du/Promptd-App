@@ -40,7 +40,6 @@ class WritingScreenViewController: UIViewController {
             promptTextLabel.font = promptTextLabel.font.withSize(20)
         }
     
-        // TESTING PURPOSE TO SEE IF THE TEXTVIEW TEXT CAN BE CHANGED BASED ON SEGUE
         storyTextField.text = currentStoryText ?? ""
         
     }
@@ -86,14 +85,4 @@ class WritingScreenViewController: UIViewController {
         }
         navigationController?.popViewController(animated: true)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
