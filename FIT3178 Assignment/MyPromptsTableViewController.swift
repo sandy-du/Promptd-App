@@ -52,6 +52,19 @@ class MyPromptsTableViewController: UITableViewController, DatabaseListener {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    // Override to support conditional editing of the table view.
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    // Override to support editing the table view.
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let myPrompt = allMyPrompts[indexPath.row]
+            databaseController?.deleteMyPrompt(myPrompt: myPrompt)
+        }
+    }
+    
     @IBAction func addMyPrompts(_ sender: Any) {
         performSegue(withIdentifier: "addMyPromptSegue", sender: nil)
     }
@@ -144,6 +157,7 @@ class MyPromptsTableViewController: UITableViewController, DatabaseListener {
         if segue.identifier == "showMyPromptWritingScreenSegue" {
             let destination = segue.destination as! WritingScreenViewController
             destination.currentPrompt = currentPrompt
+            destination.currentScreen = "MyPrompts"
         }
     }
     

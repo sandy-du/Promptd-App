@@ -54,6 +54,19 @@ class DraftsTableViewController: UITableViewController, CoreDataListener {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    // Override to support conditional editing of the table view.
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    // Override to support editing the table view.
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let draft = allDrafts[indexPath.row]
+            coreDataController?.deleteDraft(draft: draft)
+        }
+    }
+    
     func onDraftChange(change: CoreDataDatabaseChange, drafts: [StoryDraft]) {
         allDrafts = drafts
         tableView.reloadData()
@@ -116,6 +129,8 @@ class DraftsTableViewController: UITableViewController, CoreDataListener {
             currentPrompt.imageURL = selectedDraft?.promptImage
             destination.currentPrompt = currentPrompt
             destination.currentStoryText = selectedDraft?.draftText
+            destination.currentScreen = "Draft"
+            destination.currentDraft = selectedDraft
         }
     }
     

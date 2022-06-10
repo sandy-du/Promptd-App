@@ -14,6 +14,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     var listenerType = ListenerType.postedStories
     let CELL_POSTED = "postedCell"
     var allPostedStories: [Story] = []
+    var selectedStory: Story?
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -22,6 +24,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         // Set up database controller
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         databaseController = appDelegate?.databaseController
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -37,7 +40,13 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         let story = allPostedStories[indexPath.row]
         cell.promptLabel.text = story.prompt?.text
         cell.storyTextLabel.text = story.text
+        cell.dateLabel.text = formatDate(date: story.datePosted!)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedStory = allPostedStories[indexPath.row]
+        performSegue(withIdentifier: "showStoryReadingScreen", sender: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,15 +87,27 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBAction func toSettings(_ sender: Any) {
         performSegue(withIdentifier: "toSettingsSegue", sender: nil)
     }
-    /*
+    
+    func formatDate(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        return formatter.string(from: date)
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "showStoryReadingScreen" {
+            let destination = segue.destination as! ReadingScreenViewController
+            let currentPrompt = Prompt()
+            currentPrompt.text = selectedStory?.prompt?.text
+            currentPrompt.imageURL = selectedStory?.prompt?.imageURL
+            destination.currentPrompt = currentPrompt
+            destination.currentStoryText = selectedStory?.text
+        }
     }
-    */
+    
 
 }
 

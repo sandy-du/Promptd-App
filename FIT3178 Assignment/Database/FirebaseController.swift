@@ -145,6 +145,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
         let story = Story()
         story.text = text
         story.prompt = prompt
+        story.datePosted = Date()
         usersRefs = database.collection("users")
         let storiesRefs = usersRefs?.document(currentUser?.uid ?? "").collection("postedStories")
         
@@ -461,12 +462,12 @@ class FirebaseController: NSObject, DatabaseProtocol {
     }
     
     func parsePostedStoriesSnapShot(snapshot: QuerySnapshot) {
-        print("Snapshot count: \(snapshot.count)")
+        print("Snapshot count for Posted Stories: \(snapshot.count)")
         snapshot.documentChanges.forEach { (change) in
             var parsedPostedStory: Story?
             
             do {
-                print(change.document.data())
+                print("Posted story: \(change.document.data())")
                 parsedPostedStory = try change.document.data(as: Story.self)
             } catch let error {
                 print("Unable to decode story. Is the story malformed?")
@@ -487,6 +488,8 @@ class FirebaseController: NSObject, DatabaseProtocol {
                 postedStoriesList.remove(at: Int(change.oldIndex))
             }
         }
+        
+        postedStoriesList.sort {$0.datePosted ?? Date() > $1.datePosted ?? Date()}
         
         listeners.invoke { (listener) in
             if listener.listenerType == ListenerType.postedStories || listener.listenerType == ListenerType.all {

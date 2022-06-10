@@ -17,6 +17,8 @@ class WritingScreenViewController: UIViewController {
     @IBOutlet weak var promptWriteView: UIView!
     @IBOutlet weak var promptTextLabel: UILabel!
     @IBOutlet weak var promptImageView: UIImageView!
+    var currentDraft: StoryDraft?
+    var currentScreen: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +42,7 @@ class WritingScreenViewController: UIViewController {
     
         // TESTING PURPOSE TO SEE IF THE TEXTVIEW TEXT CAN BE CHANGED BASED ON SEGUE
         storyTextField.text = currentStoryText ?? ""
+        
     }
     
     @IBAction func saveStoryToUser(_ sender: Any) {
@@ -74,6 +77,13 @@ class WritingScreenViewController: UIViewController {
     
     @IBAction func postDraft(_ sender: Any) {
         let _ = databaseController?.addStoryToUser(prompt: currentPrompt!, text: storyTextField.text)
+        if (currentScreen == "Draft") {
+            coreDataController?.deleteDraft(draft: currentDraft!)
+        } else if (currentScreen == "MyPrompts") {
+            databaseController?.deleteMyPrompt(myPrompt: currentPrompt!)
+        } else if (currentScreen == "FavouritePrompts") {
+            databaseController?.deleteFavouritePrompt(favouritePrompt: currentPrompt!)
+        }
         navigationController?.popViewController(animated: true)
     }
     /*

@@ -53,6 +53,19 @@ class FavouritePromptsTableViewController: UITableViewController, DatabaseListen
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    // Override to support conditional editing of the table view.
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    // Override to support editing the table view.
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let favPrompt = allFavouritePrompts[indexPath.row]
+            databaseController?.deleteFavouritePrompt(favouritePrompt: favPrompt)
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         databaseController?.addListener(listener: self)
@@ -131,6 +144,7 @@ class FavouritePromptsTableViewController: UITableViewController, DatabaseListen
         if segue.identifier == "showFavouritedWritingScreenSegue" {
             let destination = segue.destination as! WritingScreenViewController
             destination.currentPrompt = currentPrompt
+            destination.currentScreen = "FavouritePrompts"
         }
     }
 

@@ -14,5 +14,6 @@ class Story: NSObject, Codable {
     @DocumentID var id: String?
     var prompt: Prompt?
     var text: String?
+    var datePosted: Date?
 
 }

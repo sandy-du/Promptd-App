@@ -11,6 +11,7 @@
 		256AA22D2850CE1700E90288 /* FriendRequestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256AA22C2850CE1700E90288 /* FriendRequestTableViewController.swift */; };
 		256AA22F2852652200E90288 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256AA22E2852652200E90288 /* NotificationsViewController.swift */; };
 		256AA23328526F8600E90288 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256AA23228526F8600E90288 /* SettingsTableViewController.swift */; };
+		256AA23528530D6600E90288 /* ReadingScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256AA23428530D6600E90288 /* ReadingScreenViewController.swift */; };
 		256CA09D2822193900B1B847 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 256CA09C2822193900B1B847 /* FirebaseAuth */; };
 		256CA09F2822193900B1B847 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 256CA09E2822193900B1B847 /* FirebaseFirestore */; };
 		256CA0A12822193900B1B847 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 256CA0A02822193900B1B847 /* FirebaseFirestoreSwift-Beta */; };
@@ -54,6 +55,7 @@
 		256AA22C2850CE1700E90288 /* FriendRequestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestTableViewController.swift; sourceTree = "<group>"; };
 		256AA22E2852652200E90288 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		256AA23228526F8600E90288 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		256AA23428530D6600E90288 /* ReadingScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingScreenViewController.swift; sourceTree = "<group>"; };
 		256CA0A328221B9C00B1B847 /* DatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseProtocol.swift; sourceTree = "<group>"; };
 		256CA0A528221BC000B1B847 /* FirebaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
 		256CA0AB28223B8D00B1B847 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				256AA22C2850CE1700E90288 /* FriendRequestTableViewController.swift */,
 				256AA22E2852652200E90288 /* NotificationsViewController.swift */,
 				256AA23228526F8600E90288 /* SettingsTableViewController.swift */,
+				256AA23428530D6600E90288 /* ReadingScreenViewController.swift */,
 			);
 			path = "FIT3178 Assignment";
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				256AA23328526F8600E90288 /* SettingsTableViewController.swift in Sources */,
 				25D522AF2813D1FE00FBA299 /* WrittenPromptData.swift in Sources */,
 				256CA0A428221B9C00B1B847 /* DatabaseProtocol.swift in Sources */,
+				256AA23528530D6600E90288 /* ReadingScreenViewController.swift in Sources */,
 				257B856E2834AC0000C074F2 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
