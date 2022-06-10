@@ -13,6 +13,7 @@ class MyFriendsViewController: UIViewController, UITableViewDelegate, UITableVie
     var listenerType = ListenerType.friends
     var allFriends: [User] = []
     let CELL_FRIEND = "friendCell"
+    var currentFriend: User?
     @IBOutlet weak var tableView: UITableView!
     
     
@@ -39,6 +40,11 @@ class MyFriendsViewController: UIViewController, UITableViewDelegate, UITableVie
         content.text = friend.username
         friendCell.contentConfiguration = content
         return friendCell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        currentFriend = allFriends[indexPath.row]
+        performSegue(withIdentifier: "toFriendProfileSegue", sender: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,17 +83,25 @@ class MyFriendsViewController: UIViewController, UITableViewDelegate, UITableVie
     func onFriendRequestsChange(change: DatabaseChange, friendRequests: [User]) {
         //
     }
+    
+    func onFriendPostedStoriesChange(change: DatabaseChange, friendPostedStories: [Story]) {
+        //
+    }
+    
     @IBAction func toFriendRequests(_ sender: Any) {
         performSegue(withIdentifier: "showFriendRequestsSegue", sender: nil)
     }
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "toFriendProfileSegue" {
+            let destination = segue.destination as! FriendProfileViewController
+            databaseController?.setupFriendPostedStoriesListener(friend: currentFriend!)
+            destination.currentFriend = currentFriend
+        }
     }
-    */
+    
 
 }

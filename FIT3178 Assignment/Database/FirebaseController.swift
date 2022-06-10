@@ -8,7 +8,6 @@
 import UIKit
 import Firebase
 import FirebaseFirestoreSwift
-import simd
 
 class FirebaseController: NSObject, DatabaseProtocol {
     
@@ -19,7 +18,8 @@ class FirebaseController: NSObject, DatabaseProtocol {
     var friendList: [User] = []
     var friendRequestList: [User] = []
     var allUsersList: [User] = []
-    
+    var friendPostedStoriesList: [Story] = []
+ 
     // References to the Firebase Authentication System, Firebase Firestore Database
     var authController: Auth
     var database: Firestore
@@ -45,6 +45,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
         friendList = [User]()
         friendRequestList = [User]()
         allUsersList = [User]()
+        friendPostedStoriesList = [Story]()
         super.init()
         
         /*
@@ -93,6 +94,10 @@ class FirebaseController: NSObject, DatabaseProtocol {
         
         if listener.listenerType == .allUsers || listener.listenerType == .all {
             listener.onAllUsersChange(change: .update, allUsers: allUsersList)
+        }
+        
+        if listener.listenerType == .friendPostedStories || listener.listenerType == .all {
+            listener.onFriendPostedStoriesChange(change: .update, friendPostedStories: friendPostedStoriesList)
         }
     }
     
@@ -310,6 +315,14 @@ class FirebaseController: NSObject, DatabaseProtocol {
         }
     }
     
+    func userSignOut() {
+        do {
+            try authController.signOut()
+        } catch {
+            print("Already logged out!")
+        }
+    }
+    
     func getCurrentUser() -> User {
         return self.signedInUser
     }
@@ -388,6 +401,55 @@ class FirebaseController: NSObject, DatabaseProtocol {
                 return
             }
             self.parseFriendRequestsSnapshot(snapshot: querySnapshot)
+        }
+    }
+    
+    func setupFriendPostedStoriesListener(friend: User) {
+        let postedFriendStoriesRef = usersRefs?.document(friend.uid ?? "").collection("postedStories")
+        postedFriendStoriesRef?.addSnapshotListener{ (querySnapshot, error) in
+            guard let querySnapshot = querySnapshot else {
+                print("Failed to fetch documents with error: \(String(describing: error))")
+                return
+            }
+            self.parseFriendPostedStoriesSnapShot(snapshot: querySnapshot)
+        }
+    }
+    
+    func parseFriendPostedStoriesSnapShot(snapshot: QuerySnapshot) {
+        friendPostedStoriesList.removeAll()
+        print("Snapshot count for Posted Stories: \(snapshot.count)")
+        snapshot.documentChanges.forEach { (change) in
+            var parsedPostedStory: Story?
+            
+            do {
+                print("Posted story: \(change.document.data())")
+                parsedPostedStory = try change.document.data(as: Story.self)
+            } catch let error {
+                print("Unable to decode story. Is the story malformed?")
+                print(error.localizedDescription)
+                return
+            }
+            
+            guard let postedStory = parsedPostedStory else {
+                print("Document doesn't exist")
+                return;
+            }
+            if change.type == .added {
+                print("Change.newIndex: \(change.newIndex)")
+                friendPostedStoriesList.insert(postedStory, at: Int(change.newIndex))
+            } else if change.type == .modified {
+                friendPostedStoriesList[Int(change.oldIndex)] = postedStory
+            } else if change.type == .removed {
+                friendPostedStoriesList.remove(at: Int(change.oldIndex))
+            }
+        }
+        
+        friendPostedStoriesList.sort {$0.datePosted ?? Date() > $1.datePosted ?? Date()}
+        
+        listeners.invoke { (listener) in
+            if listener.listenerType == ListenerType.friendPostedStories || listener.listenerType == ListenerType.all {
+                listener.onFriendPostedStoriesChange(change: .update, friendPostedStories: friendPostedStoriesList)
+            }
         }
     }
     

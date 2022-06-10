@@ -22,6 +22,7 @@ enum ListenerType {
     case friends
     case friendRequests
     case allUsers
+    case friendPostedStories
     case all
 }
 
@@ -33,6 +34,7 @@ protocol DatabaseListener: AnyObject {
     func onFriendsChange(change: DatabaseChange, friends: [User])
     func onFriendRequestsChange(change: DatabaseChange, friendRequests: [User])
     func onAllUsersChange(change: DatabaseChange, allUsers: [User])
+    func onFriendPostedStoriesChange(change: DatabaseChange, friendPostedStories: [Story])
 }
 
 protocol DatabaseProtocol: AnyObject {
@@ -59,4 +61,7 @@ protocol DatabaseProtocol: AnyObject {
     func deleteUserFromFriendRequest(friend: User)
     
     func getCurrentUser() -> User
+    func userSignOut()
+    
+    func setupFriendPostedStoriesListener(friend: User)
 }

@@ -79,5 +79,8 @@ class SignupViewController: UIViewController {
         // Present alert to the user
         self.present(alertController, animated: true, completion: nil)
     }
+    @IBAction func toSignUp(_ sender: Any) {
+        performSegue(withIdentifier: "toLoginPage", sender: nil)
+    }
     
 }

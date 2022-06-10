@@ -117,6 +117,9 @@ class AddFriendsViewController: UITableViewController, UISearchResultsUpdating, 
     func onFriendRequestsChange(change: DatabaseChange, friendRequests: [User]) {
         //
     }
+    func onFriendPostedStoriesChange(change: DatabaseChange, friendPostedStories: [Story]) {
+        //
+    }
     
     func didPressButton(_ tag: Int){
         // Function to pass the addFriendButton the friend added

@@ -82,6 +82,10 @@ class FriendRequestTableViewController: UITableViewController, DatabaseListener,
         //
     }
     
+    func onFriendPostedStoriesChange(change: DatabaseChange, friendPostedStories: [Story]) {
+        //
+    }
+    
     func didPressAcceptButton(_ tag: Int) {
         let user = allFriendRequests[tag]
         let _ = databaseController?.addFriendToUser(friend: user)

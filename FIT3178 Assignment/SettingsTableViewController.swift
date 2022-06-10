@@ -9,10 +9,14 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
 
-    let settings = ["Account Details","Notifications", "About"]
+    let settings = ["Account Details","Notifications", "About", "Sign Out"]
+    weak var databaseController: DatabaseProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Set up database controller
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        databaseController = appDelegate?.databaseController
     }
 
     // MARK: - Table view data source
@@ -35,6 +39,17 @@ class SettingsTableViewController: UITableViewController {
         content.text = setting
         cell.contentConfiguration = content
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if settings[indexPath.row] == "Sign Out" {
+            //UserDefaults.standard.set(false, forKey: "isUserLoggedIn")
+            //UserDefaults.standard.synchronize()
+            databaseController?.userSignOut()
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let welcomeScreen = storyboard.instantiateViewController(withIdentifier: "welcomeScreen")
+            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.setRootViewController(welcomeScreen)
+        }
     }
 
 

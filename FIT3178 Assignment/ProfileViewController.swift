@@ -84,6 +84,10 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         //
     }
 
+    func onFriendPostedStoriesChange(change: DatabaseChange, friendPostedStories: [Story]) {
+        //
+    }
+    
     @IBAction func toSettings(_ sender: Any) {
         performSegue(withIdentifier: "toSettingsSegue", sender: nil)
     }
