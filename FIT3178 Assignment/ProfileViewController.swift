@@ -124,6 +124,15 @@ class PostedCell: UICollectionViewCell {
     @IBOutlet weak var background: UIView!
     
     override func awakeFromNib() {
-        background.layer.cornerRadius = 12
+        
+        // Set shadow and corner of view
+        background.layer.cornerRadius = 10
+        background.layer.borderWidth = 0.2
+        background.layer.borderColor = UIColor.gray.cgColor
+        background.layer.shadowColor = UIColor.black.cgColor
+        background.layer.shadowOpacity = 0.2
+        background.layer.shadowOffset = CGSize(width: 0, height: 0)
+        background.layer.shadowRadius = 4
+        background.layer.backgroundColor = UIColor(named: "PromptdLightGreen")?.cgColor
     }
 }

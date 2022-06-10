@@ -18,6 +18,7 @@ class FriendProfileViewController: UIViewController, UICollectionViewDelegate, U
     var selectedStory: Story?
     var currentFriend: User?
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var usernameLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,8 @@ class FriendProfileViewController: UIViewController, UICollectionViewDelegate, U
         // Set up database controller
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         databaseController = appDelegate?.databaseController
+        
+        usernameLabel.text = "\(currentFriend?.username ?? "")'s Profile"
     }
     
     
@@ -104,6 +107,14 @@ class FriendPostedCell: UICollectionViewCell {
     @IBOutlet weak var background: UIView!
     
     override func awakeFromNib() {
-        background.layer.cornerRadius = 12
+        // Set shadow and corner of view
+        background.layer.cornerRadius = 10
+        background.layer.borderWidth = 0.2
+        background.layer.borderColor = UIColor.gray.cgColor
+        background.layer.shadowColor = UIColor.black.cgColor
+        background.layer.shadowOpacity = 0.2
+        background.layer.shadowOffset = CGSize(width: 0, height: 0)
+        background.layer.shadowRadius = 4
+        background.layer.backgroundColor = UIColor(named: "PromptdLightGreen")?.cgColor
     }
 }

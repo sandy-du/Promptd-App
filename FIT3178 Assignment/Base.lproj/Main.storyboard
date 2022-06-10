@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -18,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RIa-qo-whu">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Promptd" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RIa-qo-whu">
                                 <rect key="frame" x="20" y="144" width="374" height="37"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
@@ -103,7 +104,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JZj-Em-fqd">
-                                <rect key="frame" x="247" y="796" width="75" height="31.5"/>
+                                <rect key="frame" x="251" y="796" width="75" height="31.5"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Sign Up"/>
                                 <connections>
@@ -123,7 +124,7 @@
                             <constraint firstItem="OaO-Ft-772" firstAttribute="leading" secondItem="KN2-Tu-GKn" secondAttribute="leading" constant="20" id="IQ8-zy-vBk"/>
                             <constraint firstItem="Xhl-tG-HVV" firstAttribute="leading" secondItem="KN2-Tu-GKn" secondAttribute="leading" constant="20" id="JkC-eQ-7PP"/>
                             <constraint firstItem="wYI-mA-JUQ" firstAttribute="top" secondItem="KN2-Tu-GKn" secondAttribute="top" constant="70" id="MvO-cA-fpc"/>
-                            <constraint firstItem="KN2-Tu-GKn" firstAttribute="trailing" secondItem="JZj-Em-fqd" secondAttribute="trailing" constant="92" id="OSU-DU-kqz"/>
+                            <constraint firstItem="KN2-Tu-GKn" firstAttribute="trailing" secondItem="JZj-Em-fqd" secondAttribute="trailing" constant="88" id="OSU-DU-kqz"/>
                             <constraint firstItem="KN2-Tu-GKn" firstAttribute="trailing" secondItem="zms-fz-cG2" secondAttribute="trailing" constant="20" id="aWQ-9O-bwh"/>
                             <constraint firstItem="KN2-Tu-GKn" firstAttribute="bottom" secondItem="JZj-Em-fqd" secondAttribute="bottom" constant="34.5" id="cIs-1p-ZR1"/>
                             <constraint firstItem="Xhl-tG-HVV" firstAttribute="top" secondItem="zms-fz-cG2" secondAttribute="bottom" constant="20" id="emc-Iu-ly7"/>
@@ -223,6 +224,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" name="PromptdGreen"/>
                     </tabBar>
                     <connections>
                         <segue destination="amt-7C-Yx2" kind="relationship" relationship="viewControllers" id="mhL-Cf-q3J"/>
@@ -407,14 +409,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7i-CL-2Qh">
-                                <rect key="frame" x="20" y="98" width="374" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7i-CL-2Qh">
+                                <rect key="frame" x="20" y="98" width="374" height="23"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nz3-oc-sFi">
-                                <rect key="frame" x="8" y="244" width="398" height="569"/>
+                                <rect key="frame" x="8" y="141" width="398" height="672"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="99s-cQ-nbA">
                                     <size key="itemSize" width="385" height="180"/>
@@ -455,7 +457,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                                    <color key="backgroundColor" name="PromptdLightGreen"/>
                                                     <constraints>
                                                         <constraint firstItem="ECa-Yk-b6X" firstAttribute="leading" secondItem="r9k-Qh-kaE" secondAttribute="leading" constant="20" id="0UG-xV-d9N"/>
                                                         <constraint firstAttribute="trailing" secondItem="hnb-OY-Fjm" secondAttribute="trailing" constant="20" id="2nj-6b-0Hs"/>
@@ -497,7 +499,7 @@
                             <constraint firstItem="nz3-oc-sFi" firstAttribute="bottom" secondItem="2G8-KZ-aZn" secondAttribute="bottom" id="NuW-mR-ZNh"/>
                             <constraint firstItem="f7i-CL-2Qh" firstAttribute="leading" secondItem="2G8-KZ-aZn" secondAttribute="leading" constant="20" id="TiU-wr-uOI"/>
                             <constraint firstItem="nz3-oc-sFi" firstAttribute="leading" secondItem="2G8-KZ-aZn" secondAttribute="leading" constant="8" id="VsM-yZ-hDX"/>
-                            <constraint firstItem="nz3-oc-sFi" firstAttribute="top" secondItem="f7i-CL-2Qh" secondAttribute="bottom" constant="125" id="Wlh-Fb-3Os"/>
+                            <constraint firstItem="nz3-oc-sFi" firstAttribute="top" secondItem="f7i-CL-2Qh" secondAttribute="bottom" constant="20" id="Wlh-Fb-3Os"/>
                             <constraint firstItem="f7i-CL-2Qh" firstAttribute="top" secondItem="2G8-KZ-aZn" secondAttribute="top" constant="10" id="awg-cM-Zel"/>
                             <constraint firstItem="2G8-KZ-aZn" firstAttribute="trailing" secondItem="f7i-CL-2Qh" secondAttribute="trailing" constant="20" id="fa6-rs-aik"/>
                         </constraints>
@@ -505,6 +507,7 @@
                     <navigationItem key="navigationItem" id="xbq-YJ-FWQ"/>
                     <connections>
                         <outlet property="collectionView" destination="nz3-oc-sFi" id="FPO-qR-QAM"/>
+                        <outlet property="usernameLabel" destination="f7i-CL-2Qh" id="NMc-Nk-QV0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="guI-XE-fpv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -632,7 +635,7 @@
             </objects>
             <point key="canvasLocation" x="-2262.3188405797105" y="1076.7857142857142"/>
         </scene>
-        <!--Profile-->
+        <!--My Profile-->
         <scene sceneID="KHW-D6-Ouc">
             <objects>
                 <viewController id="MPv-vr-V3g" customClass="ProfileViewController" customModule="FIT3178_Assignment" customModuleProvider="target" sceneMemberID="viewController">
@@ -640,14 +643,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KuF-PL-mbS">
-                                <rect key="frame" x="20" y="128" width="374" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JlW-Qn-YQa">
-                                <rect key="frame" x="8" y="318" width="398" height="495"/>
+                                <rect key="frame" x="8" y="96" width="398" height="717"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ayp-36-Wg2">
                                     <size key="itemSize" width="392" height="180"/>
@@ -688,7 +685,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                                    <color key="backgroundColor" name="PromptdLightGreen"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="uDi-QQ-A0a" secondAttribute="trailing" constant="20" id="1gf-Se-Vua"/>
                                                         <constraint firstItem="uDi-QQ-A0a" firstAttribute="top" secondItem="7nC-MR-hCN" secondAttribute="bottom" constant="20" id="3bZ-CA-JF2"/>
@@ -727,15 +724,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="1kP-GQ-dn9" firstAttribute="trailing" secondItem="JlW-Qn-YQa" secondAttribute="trailing" constant="8" id="7un-0g-JWW"/>
-                            <constraint firstItem="JlW-Qn-YQa" firstAttribute="top" secondItem="KuF-PL-mbS" secondAttribute="bottom" constant="169" id="JPs-oe-Bbx"/>
-                            <constraint firstItem="KuF-PL-mbS" firstAttribute="leading" secondItem="1kP-GQ-dn9" secondAttribute="leading" constant="20" id="Om0-So-aAs"/>
-                            <constraint firstItem="1kP-GQ-dn9" firstAttribute="trailing" secondItem="KuF-PL-mbS" secondAttribute="trailing" constant="20" id="QAJ-eu-0vn"/>
                             <constraint firstItem="JlW-Qn-YQa" firstAttribute="bottom" secondItem="1kP-GQ-dn9" secondAttribute="bottom" id="QQ5-rX-r8y"/>
-                            <constraint firstItem="KuF-PL-mbS" firstAttribute="top" secondItem="1kP-GQ-dn9" secondAttribute="top" constant="40" id="sxJ-Uf-Vbq"/>
                             <constraint firstItem="JlW-Qn-YQa" firstAttribute="leading" secondItem="1kP-GQ-dn9" secondAttribute="leading" constant="8" id="u5T-Xv-9Ny"/>
+                            <constraint firstItem="JlW-Qn-YQa" firstAttribute="top" secondItem="1kP-GQ-dn9" secondAttribute="top" constant="8" id="uKr-RM-tTN"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" largeTitleDisplayMode="always" id="Xk8-pm-wlA">
+                    <navigationItem key="navigationItem" title="My Profile" largeTitleDisplayMode="always" id="Xk8-pm-wlA">
                         <barButtonItem key="rightBarButtonItem" title="Item" style="plain" id="mwQ-cd-mGb">
                             <imageReference key="image" image="line.3.horizontal" catalog="system" symbolScale="large"/>
                             <connections>
@@ -773,7 +767,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Write a short story based on the following: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j5H-fw-7c4">
                                         <rect key="frame" x="20" y="15" width="334" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" systemColor="systemGray2Color"/>
+                                        <color key="textColor" systemColor="systemGrayColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="exuberant, mask, tyre exuberant, mask, tyre exuberant, mask, tyre" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d6x-1Y-Hdh">
@@ -783,7 +777,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemGray3Color"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="j5H-fw-7c4" secondAttribute="trailing" constant="20" id="4k4-ls-9pa"/>
                                     <constraint firstItem="j5H-fw-7c4" firstAttribute="top" secondItem="nrj-pW-PBT" secondAttribute="top" constant="15" id="9VL-Rc-gsG"/>
@@ -956,7 +950,7 @@
             </objects>
             <point key="canvasLocation" x="1792.753623188406" y="438.61607142857139"/>
         </scene>
-        <!--Add My Prompt View Controller-->
+        <!--Add Prompt-->
         <scene sceneID="VbG-Xt-PnQ">
             <objects>
                 <viewController id="Onb-Wq-nPd" customClass="AddMyPromptViewController" customModule="FIT3178_Assignment" customModuleProvider="target" sceneMemberID="viewController">
@@ -967,7 +961,6 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="B3D-1k-L9c">
                                 <rect key="frame" x="20" y="88" width="374" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -982,7 +975,7 @@
                             <constraint firstItem="g3M-01-fKs" firstAttribute="bottom" secondItem="B3D-1k-L9c" secondAttribute="bottom" id="uj0-x2-9KP"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Q6K-Qo-iU5">
+                    <navigationItem key="navigationItem" title="Add Prompt" id="Q6K-Qo-iU5">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="M4B-6q-NPc">
                             <connections>
                                 <action selector="saveMyPrompt:" destination="Onb-Wq-nPd" id="Vxp-dV-WYb"/>
@@ -1049,7 +1042,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tqf-Oo-0xj">
                                         <rect key="frame" x="20" y="429" width="157" height="31"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Next Prompt"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Next Prompt">
+                                            <color key="baseBackgroundColor" name="PromptdGreen"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="nextPrompt:" destination="vcH-g3-CxS" eventType="touchUpInside" id="sRX-a3-8Bf"/>
                                         </connections>
@@ -1057,7 +1052,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fcg-Et-8Qd">
                                         <rect key="frame" x="197" y="429" width="157" height="31"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Write"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Write">
+                                            <color key="baseBackgroundColor" name="PromptdGreen"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="writeStory:" destination="vcH-g3-CxS" eventType="touchUpInside" id="qYj-HD-ksB"/>
                                         </connections>
@@ -1065,13 +1062,15 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Write a short story based on the following: " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MhC-j4-zGs">
                                         <rect key="frame" x="20" y="60" width="334" height="17"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                        <color key="textColor" systemColor="systemGray2Color"/>
+                                        <color key="textColor" systemColor="systemGrayColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nuH-Ev-MpR">
                                         <rect key="frame" x="5" y="12" width="52" height="31"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="star" catalog="system"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="star" catalog="system">
+                                            <color key="baseForegroundColor" name="PromptdGreen"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="favourited:" destination="vcH-g3-CxS" eventType="touchUpInside" id="1ys-Y9-B0g"/>
                                         </connections>
@@ -1116,6 +1115,7 @@
                                             </attributes>
                                         </fragment>
                                     </attributedString>
+                                    <color key="baseBackgroundColor" name="PromptdGreen"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <segue destination="hWQ-Jh-DbY" kind="show" identifier="showMyPromptsSegue" id="9jm-Eo-8kx"/>
@@ -1126,6 +1126,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Favourited Prompts" cornerStyle="capsule">
                                     <fontDescription key="titleFontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
+                                    <color key="baseBackgroundColor" name="PromptdGreen"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <segue destination="hFT-Hq-xXl" kind="show" identifier="showFavouritesSegue" id="dxf-uf-QYl"/>
@@ -1181,13 +1182,13 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Write a short story based on the following: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNp-EF-5BC">
                                         <rect key="frame" x="20" y="15" width="334" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" systemColor="systemGrayColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="exuberant, mask, tyre exuberant, mask, tyre exuberant, mask, tyre" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kTc-id-kya">
                                         <rect key="frame" x="20" y="41" width="334" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" systemColor="systemGrayColor"/>
+                                        <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0bL-of-xQi">
@@ -1197,7 +1198,7 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemGray3Color"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="aNp-EF-5BC" secondAttribute="trailing" constant="20" id="2A5-uk-DIq"/>
                                     <constraint firstAttribute="trailing" secondItem="kTc-id-kya" secondAttribute="trailing" constant="20" id="3RA-iU-wVh"/>
@@ -1215,7 +1216,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zzE-Zg-wRa">
                                 <rect key="frame" x="20" y="773" width="374" height="32"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Post"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Post">
+                                    <color key="baseBackgroundColor" name="PromptdGreen"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="postDraft:" destination="tQ5-s0-X7j" eventType="touchUpInside" id="zuh-AK-Nh8"/>
                                 </connections>
@@ -1239,6 +1242,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Write" id="oPd-Py-2Dt">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="EBc-k7-jh2">
+                            <color key="tintColor" name="PromptdGreen"/>
                             <connections>
                                 <action selector="saveStoryToUser:" destination="tQ5-s0-X7j" id="WEN-Yn-GE6"/>
                             </connections>
@@ -1334,10 +1338,11 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="j1r-jt-ugw"/>
-        <segue reference="diq-p6-soe"/>
-        <segue reference="Sll-gC-dNa"/>
+        <segue reference="Le0-0u-NWN"/>
+        <segue reference="EtY-Lo-qK8"/>
         <segue reference="pO0-c5-dUY"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" name="PromptdGreen"/>
     <resources>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="line.3.horizontal" catalog="system" width="128" height="64"/>
@@ -1345,20 +1350,23 @@
         <image name="person.3" catalog="system" width="128" height="62"/>
         <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <image name="star" catalog="system" width="128" height="116"/>
+        <namedColor name="PromptdGreen">
+            <color red="0.35294117647058826" green="0.5607843137254902" blue="0.32156862745098042" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="PromptdLightGreen">
+            <color red="0.78431372549019607" green="0.87058823529411766" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGray3Color">
-            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
