@@ -28,9 +28,22 @@ class HomeScreenViewController: UIViewController {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         databaseController = appDelegate?.databaseController
         
+        // Set shadow and corner of view
+        //promptView.backgroundColor = .white
         promptView.layer.cornerRadius = 10
+        promptView.layer.borderWidth = 0.2
+        promptView.layer.borderColor = UIColor.gray.cgColor
+        promptView.layer.shadowColor = UIColor.black.cgColor
+        promptView.layer.shadowOpacity = 0.2
+        promptView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        promptView.layer.shadowRadius = 4
         
-        promptLabel.textColor = .gray
+        promptView.layer.backgroundColor = UIColor.white.cgColor
+        //promptView.layer.shadowPath = UIBezierPath(roundedRect: promptView.bounds, cornerRadius: 10).cgPath
+        //promptView.layer.shouldRasterize = true
+        //promptView.layer.rasterizationScale = UIScreen.main.scale
+        
+        //promptLabel.textColor = .gray
         // Setting up favourite button
         let starImage = UIImage(systemName: "star")
         favouriteButton.setImage(starImage, for: .normal)
